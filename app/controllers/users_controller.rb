@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :admin_only, only: [:index, :destroy]
+  before_action :authenticate_user, except: [:new]
 
   def index
     @users = User.all
@@ -19,7 +21,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(current_user), notice: 'Thank you for signing up!'
+      flash[:success] = 'Спасибо за регистрацию!'
+      redirect_to @user
     else
       render :new
     end
@@ -27,7 +30,8 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      flash[:success] = 'Ваши данные успешно обновлены.'
+      redirect_to @user
     else
       render :edit
     end
@@ -35,13 +39,18 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    flash[:success] = 'Аккаунт удален.'
+    redirect_to root_path
   end
 
   private
 
     def set_user
-      @user = User.find(params[:id])
+      if current_user.admin?
+        @user = User.find(params[:id])
+      else
+        @user = current_user
+      end
     end
 
     def user_params
