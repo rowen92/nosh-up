@@ -1,14 +1,9 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::AdminController
   before_action :set_user, only: [:show, :destroy]
-  before_action :admin_only
 
   def index
     @users = User.all
   end
-
-  # Экш show может будет, а может и нет, надо еще подумать...
-  # def show
-  # end
 
   def destroy
     @user.destroy

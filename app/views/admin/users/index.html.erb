@@ -1,6 +1,6 @@
 <h2>Все пользователи</h2>
-
-<table class="table">
+<div class="table-responsive">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Имя</th>
@@ -16,9 +16,10 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.phone %></td>
-        <td><%= link_to 'Показать', user, class: "btn btn-default btn-xs btn-block" %></td>
+        <td><%= link_to 'Показать', user, class: "btn btn-default btn-xs btn-block", target: "_blank" %></td>
         <td><%= link_to 'Удалить', [:admin, user], class: "btn btn-danger btn-xs btn-block", method: :delete, data: { confirm: 'Вы уверены?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>

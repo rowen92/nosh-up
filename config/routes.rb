@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # get 'categories' =>'categories#index'
   # get 'categories/:id' => 'categories#show'
+  get 'admin' => 'admin/admin#index'
   resources :categories, :users, :sessions
 
   namespace :admin do

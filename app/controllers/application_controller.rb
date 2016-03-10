@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     def admin_only
       unless current_user && current_user.admin?
         flash[:alert] = "Эта функция доступна только администратору!"
-        redirect_to :back
+        redirect_to root_path
       end
     end
 

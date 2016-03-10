@@ -1,0 +1,13 @@
+<div class="col-sm-3 col-md-2 sidebar">
+  <ul class="nav nav-sidebar">
+    <%= content_tag :li, class: current_page?(admin_categories_path) ? "active" : "" do %>
+      <%= link_to "Категории", admin_categories_path %>
+    <% end %>
+    <%= content_tag :li, class: current_page?(admin_users_path) ? "active" : "" do %>
+      <%= link_to "Пользователи", admin_users_path %>
+    <% end %>
+    <li><a href="#">Reports</a></li>
+    <li><a href="#">Analytics</a></li>
+    <li><a href="#">Export</a></li>
+  </ul>
+</div>
