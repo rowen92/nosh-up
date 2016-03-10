@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
   # get 'categories' =>'categories#index'
   # get 'categories/:id' => 'categories#show'
-  resources :categories
-  resources :users
-  resources :sessions
+  resources :categories, :users, :sessions
 
   namespace :admin do
-    resources :categories
+    resources :categories, :users
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,24 @@
+<h2>Все пользователи</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Имя</th>
+      <th>Email</th>
+      <th>Телефон</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone %></td>
+        <td><%= link_to 'Показать', user, class: "btn btn-default btn-xs btn-block" %></td>
+        <td><%= link_to 'Удалить', [:admin, user], class: "btn btn-danger btn-xs btn-block", method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

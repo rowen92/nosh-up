@@ -1,29 +1,31 @@
 <%= form_for([:admin, @category]) do |f| %>
   <% if @category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
-
-      <ul>
-      <% @category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div id="error_explanation">
+    <% @category.errors.full_messages.each do |message| %>
+    <div class="alert alert-danger alert-dismissible fade in" role=alert>
+      <button type=button class=close data-dismiss=alert aria-label=Close>
+        <span aria-hidden=true>&times;</span>
+      </button>
+      <%= message %>
     </div>
+    <% end %>
+
+  </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class="form-group">
+    <%= f.label :title,"Название" %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
+  <div class="form-group">
+    <%= f.label :description, "Описание" %>
+    <%= f.text_field :description, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :image_url %><br>
-    <%= f.text_field :image_url %>
+  <div class="form-group">
+    <%= f.label :image_url, "Ссылка на фото" %>
+    <%= f.text_field :image_url, class: "form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary btn-block", value: "Отправить" %>
   </div>
 <% end %>

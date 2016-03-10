@@ -1,6 +1,5 @@
 class Admin::CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user
   before_action :admin_only
 
   def index
@@ -39,7 +38,7 @@ class Admin::CategoriesController < ApplicationController
   def destroy
     @category.destroy
     flash[:success] = 'Категория успешно удалена.'
-    redirect_to categories_url
+    redirect_to categories_path
   end
 
   private

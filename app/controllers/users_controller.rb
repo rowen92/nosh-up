@@ -1,11 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :admin_only, only: [:index, :destroy]
+  before_action :set_user, only: [:show, :edit, :update]
   before_action :authenticate_user, except: [:new]
-
-  def index
-    @users = User.all
-  end
 
   def show
   end
@@ -35,12 +30,6 @@ class UsersController < ApplicationController
     else
       render :edit
     end
-  end
-
-  def destroy
-    @user.destroy
-    flash[:success] = 'Аккаунт удален.'
-    redirect_to root_path
   end
 
   private
