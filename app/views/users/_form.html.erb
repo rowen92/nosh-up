@@ -28,7 +28,7 @@
   <div class="form-group">
     <%= f.label :phone, "Телефон", class: "control-label col-xs-3" %>
     <div class="col-xs-9">
-      <%= f.number_field :phone, class: "form-control" %>
+      <%= f.number_field :phone, class: "form-control", placeholder: "+38(0**)*******" %>
     </div>
   </div>
   <div class="form-group">
@@ -40,7 +40,7 @@
   <div class="form-group">
     <%= f.label :password, "Пароль", class: "control-label col-xs-3" %>
     <div class="col-xs-9">
-      <%= f.password_field :password, class: "form-control" %>
+      <%= f.password_field :password, class: "form-control", placeholder: @password_placeholder %>
     </div>
   </div>
   <div class="form-group">

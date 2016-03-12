@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :authenticate_user, except: [:new]
+  before_action :authenticate_user, except: [:new, :create]
 
   def show
+    @make_admin_button = @user.admin? ? "Понизить до простого покупателя" : "Сделать админом"
   end
 
   def new
@@ -10,14 +11,16 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @password_placeholder = "Оставьте пустым, если не хотите изменять"
   end
 
   def create
     @user = User.new(user_params)
+    @user.role = "user"
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = 'Спасибо за регистрацию!'
-      redirect_to @user
+      current_user.admin? ? (redirect_to admin_path) : (redirect_to user_path(current_user))
     else
       render :new
     end

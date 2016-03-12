@@ -12,14 +12,12 @@
 <body>
   <%= render "layouts/admin_menu" %>
   <div class="container">
-
-    <%= flash_messages %>
-
     <div class="container-fluid">
       <div class="row">
         <%= render "layouts/admin_sidebar" %>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <%= yield %>
+          <%= flash_messages %>
+          <%= yield %>
         </div>
       </div>
     </div>

@@ -10,9 +10,10 @@ class User < ActiveRecord::Base
   validates :phone, presence: true,
                     length: { minimum: 5},
                     uniqueness: true
-  # validates :role, presence: true
+  validates :role, presence: true
   validates :password, presence: true,
-                       length: { minimum: 6 }
+                       length: { minimum: 6 },
+                       if: :password
   validates :address, presence: true
 
   enum role: [:admin, :user]

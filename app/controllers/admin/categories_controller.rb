@@ -37,7 +37,7 @@ class Admin::CategoriesController < Admin::AdminController
   def destroy
     @category.destroy
     flash[:success] = 'Категория удалена.'
-    redirect_to categories_path
+    redirect_to admin_categories_path
   end
 
   private
