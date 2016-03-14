@@ -8,10 +8,12 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @submit_value = "Зарегистрироваться"
   end
 
   def edit
     @password_placeholder = "Оставьте пустым, если не хотите изменять"
+    @submit_value = "Сохранить"
   end
 
   def create

@@ -5,7 +5,6 @@
       <tr>
         <th>Имя</th>
         <th>Email</th>
-        <th>Телефон</th>
         <th>Роль</th>
       </tr>
     </thead>
@@ -15,7 +14,6 @@
         <tr>
           <td><%= user.name %></td>
           <td><%= user.email %></td>
-          <td>+380<%= user.phone %></td>
           <td><%= user.role %></td>
           <td><%= link_to 'Показать', user, class: "btn btn-default btn-xs btn-block", target: "_blank" %></td>
           <td><%= link_to 'Удалить', [:admin, user], class: "btn btn-danger btn-xs btn-block", method: :delete, data: { confirm: 'Вы уверены?' } %></td>
