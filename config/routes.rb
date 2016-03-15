@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :orders
   resources :products
   # get 'categories' =>'categories#index'
   # get 'categories/:id' => 'categories#show'
