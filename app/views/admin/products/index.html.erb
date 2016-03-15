@@ -18,9 +18,21 @@
           <td><%= number_to_currency(product.price, unit: "₴") %></td>
           <td><%= image_tag product.image_url(:small) if product.image? %></td>
           <td><%= product.category.title %></td>
-          <td><%= link_to 'Показать', [:admin, product], class: "btn btn-default btn-xs btn-block" %></td>
-          <td><%= link_to 'Редактировать', edit_admin_product_path(product), class: "btn btn-default btn-xs btn-block" %></td>
-          <td><%= link_to 'Удалить', [:admin, product], class: "btn btn-danger btn-xs btn-block", method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+          <td>
+            <%= link_to [:admin, product] do %>
+              <span class="glyphicon glyphicon-eye-open text-muted" aria-hidden="true"></span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_admin_product_path(product) do %>
+              <span class="glyphicon glyphicon-pencil text-muted" aria-hidden="true"></span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to [:admin, product], method: :delete, data: { confirm: 'Вы уверены?' } do %>
+              <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
