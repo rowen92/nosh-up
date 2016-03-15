@@ -37,11 +37,11 @@
     </tr>
   </table>
   <% if current_user == @user %>
-    <%= link_to "Изменить данные", edit_user_path(current_user), class: "btn btn-default btn-block" %>
+    <%= link_to "Редактировать", edit_user_path(current_user), class: "btn btn-link" %>
   <% end %>
   <% if current_user != @user %>
     <%= link_to @make_admin_button, admin_make_admin_path(user_id: @user.id),
-                                    class: "btn btn-default btn-block",
+                                    class: "btn btn-link",
                                     data: { confirm: "Вы уверенны?" } %>
   <% end %>
 </div>

@@ -1,7 +1,10 @@
-class Category < ActiveRecord::Base
-  has_many :products
+class Product < ActiveRecord::Base
+  belongs_to :category
+
   validates :title, presence: true,
                     uniqueness: true
   validates :description, presence: true
+  validates :price, presence: true
   validates :image_url, presence: true
+  validates :category, presence: true
 end

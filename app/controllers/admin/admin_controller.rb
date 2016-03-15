@@ -4,5 +4,11 @@ class Admin::AdminController < ApplicationController
 
   def index
   end
-  
+
+  private
+
+    def get_collect_categories
+      @categoies = Category.all
+    end
+
 end

@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  resources :products
   # get 'categories' =>'categories#index'
   # get 'categories/:id' => 'categories#show'
   get 'admin' => 'admin/admin#index'
-  resources :categories, :users, :sessions
+  resources :categories, :users, :sessions, :products
 
   namespace :admin do
-    resources :categories, :users
+    resources :categories, :users, :products
     get 'users/:id/make_admin' =>'users#make_admin', as: :make_admin
   end
   # The priority is based upon order of creation: first created -> highest priority.
@@ -60,6 +61,5 @@ Rails.application.routes.draw do
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  #     #   end
 end

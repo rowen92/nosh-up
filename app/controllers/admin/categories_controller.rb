@@ -18,7 +18,7 @@ class Admin::CategoriesController < Admin::AdminController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:success] = 'Категория успешно создана!'
+      flash[:success] = "Категория создана!"
       redirect_to ([:admin, @category])
     else
       render :new
@@ -27,7 +27,7 @@ class Admin::CategoriesController < Admin::AdminController
 
   def update
     if @category.update(category_params)
-      flash[:success] = 'Категория успешно обновлена.'
+      flash[:success] = "Категория обновлена."
       redirect_to ([:admin, @category])
     else
       render :edit
@@ -36,7 +36,7 @@ class Admin::CategoriesController < Admin::AdminController
 
   def destroy
     @category.destroy
-    flash[:success] = 'Категория удалена.'
+    flash[:success] = "Категория удалена."
     redirect_to admin_categories_path
   end
 

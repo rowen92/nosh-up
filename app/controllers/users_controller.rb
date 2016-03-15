@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user, except: [:new, :create]
 
   def show
-    @make_admin_button = @user.admin? ? "Понизить до простого покупателя" : "Сделать админом"
+    @make_admin_button = @user.admin? ? "Понизить до покупателя" : "Сделать админом"
   end
 
   def new
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user.role = "user"
     if @user.save
       session[:user_id] = @user.id
-      flash[:success] = 'Спасибо за регистрацию!'
+      flash[:success] = "Спасибо за регистрацию!"
       current_user.admin? ? (redirect_to admin_path) : (redirect_to user_path(current_user))
     else
       render :new
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:success] = 'Ваши данные успешно обновлены.'
+      flash[:success] = "Ваши данные обновлены."
       redirect_to @user
     else
       render :edit
