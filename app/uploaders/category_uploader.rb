@@ -33,7 +33,11 @@ class CategoryUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :small do
-    process :resize_to_fit == [64, 64]
+    process :resize_to_fit => [64, 64]
+  end
+
+  version :middle do
+    process :resize_to_fit => [256, 256]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
