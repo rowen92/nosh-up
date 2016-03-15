@@ -16,8 +16,9 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'bootstrap-sass'
 gem 'faker'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'carrierwave'
+gem 'rmagick'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

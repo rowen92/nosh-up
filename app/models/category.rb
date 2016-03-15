@@ -4,4 +4,6 @@ class Category < ActiveRecord::Base
                     uniqueness: true
   validates :description, presence: true
   validates :image_url, presence: true
+
+  mount_uploader :image, CategoryUploader
 end

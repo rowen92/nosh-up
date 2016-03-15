@@ -2,7 +2,7 @@
 <%= link_to 'Новая категория', new_admin_category_path, class: "btn btn-default btn-sm new-item-button" %>
 
 <div class="table-responsive">
-  <table class="table table-striped table-hover">
+  <table class="table table-striped table-hover vertical-align">
     <thead>
       <tr>
         <th>Название</th>
@@ -13,7 +13,7 @@
       <% @categories.each do |category| %>
         <tr>
           <td><%= category.title %></td>
-          <td><%= category.image_url %></td>
+          <td><%= image_tag category.image_url(:small) if category.image? %></td>
           <td><%= link_to 'Показать', [:admin, category], class: "btn btn-default btn-xs btn-block" %></td>
           <td><%= link_to 'Редактировать', edit_admin_category_path(category), class: "btn btn-default btn-xs btn-block" %></td>
           <td><%= link_to 'Удалить', [:admin, category], class: "btn btn-danger btn-xs btn-block", method: :delete, data: { confirm: 'Вы уверены?' } %></td>
