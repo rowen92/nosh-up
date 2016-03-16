@@ -2,12 +2,12 @@
   <% if @product.errors.any? %>
     <div id="error_explanation">
       <% @product.errors.full_messages.each do |message| %>
-      <div class="alert alert-danger alert-dismissible fade in" role=alert>
-        <button type=button class=close data-dismiss=alert aria-label=Close>
-          <span aria-hidden=true>&times;</span>
-        </button>
-        <%= message %>
-      </div>
+        <div class="alert alert-danger alert-dismissible fade in" role=alert>
+          <button type=button class=close data-dismiss=alert aria-label=Close>
+            <span aria-hidden=true>&times;</span>
+          </button>
+          <%= message %>
+        </div>
       <% end %>
     </div>
   <% end %>

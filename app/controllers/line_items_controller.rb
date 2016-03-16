@@ -5,10 +5,10 @@ class LineItemsController < ApplicationController
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id)
     if @line_item.save
-      flash[:success] = "Позиция добавлена!"
-      redirect_to cart_path
+      flash[:success] = "Продукт добавлен в корзину"
+      redirect_to :back
     else
-      flash[:danger] = "Сообщите нам, что-то пошло не так."
+      flash[:alert] = "Что-то пошло не так, сообщите нам"
       redirect_to :back
     end
   end
@@ -19,9 +19,9 @@ class LineItemsController < ApplicationController
     redirect_to :back
   end
 
-  def decrease
+  def decrease_quantity
     @line_item = LineItem.find(params[:line_item])
-    if @line_item == 1 || params(:delete).present?
+    if @line_item.quantity == 1 || params[:delete].present?
       @line_item.destroy
     else
       @line_item.update_attributes(quantity: @line_item.quantity -= 1)

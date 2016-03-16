@@ -1,5 +1,8 @@
 <div class="col-sm-3 col-md-2 sidebar">
   <ul class="nav nav-sidebar">
+    <%= content_tag :li, class: current_page?(admin_orders_path) ? "active" : "" do %>
+      <%= link_to "Заказы", admin_orders_path %>
+    <% end %>
     <%= content_tag :li, class: current_page?(admin_users_path) ? "active" : "" do %>
       <%= link_to "Пользователи", admin_users_path %>
     <% end %>

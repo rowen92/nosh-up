@@ -5,19 +5,30 @@
     <tr>
       <td><%= link_to line_item.product.title, product_path(line_item.product) %></td>
       <td><%= line_item.quantity %></td>
+      <td>
+        <%= button_to '+', { controller: 'line_items',
+                             action: 'increase_quantity',
+                             line_item: line_item },
+                             class: "btn btn-success"  %>
+      </td>
+      <td>
+        <%= button_to '-', { controller: 'line_items',
+                             action: 'decrease_quantity',
+                             line_item: line_item },
+                             class: "btn btn-danger"  %>
+      </td>
       <td><%= number_to_currency(line_item.product.price, unit: "₴") %></td>
-      <td>
-        <%= button_to '+', { controller: 'line_items', action: 'increase_quantity', line_item: line_item }  %>
-      </td>
-      <td>
-        <%= button_to '-', { controller: 'line_items', action: 'decrease_quantity', line_item: line_item }  %>
-      </td>
     </tr>
     <% end %>
     <tr>
       <td>Сумма:</td>
-      <td><%= number_to_currency(@cart.total_price, unit: "₴") %></td>
+      <td><%= number_to_currency(order_total_price, unit: "₴") %></td>
     </tr>
   </table>
-  <%= button_to "Очистить корзину", @cart, method: :delete, data: { confirm: 'Вы уверены?' } %>
+  <div class="col-xs-6">
+    <%= button_to "Очистить корзину", @cart, class: "btn btn-danger", method: :delete, data: { confirm: 'Вы уверены?' } %>
+  </div>
+  <div class="col-xs-6">
+    <%= render "orders/form" %>
+  </div>
 </div>

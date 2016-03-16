@@ -6,6 +6,7 @@ class Admin::OrdersController < Admin::AdminController
   end
 
   def show
+    @line_items = @order.line_items
   end
 
   def edit
@@ -13,7 +14,7 @@ class Admin::OrdersController < Admin::AdminController
 
   def update
     if @order.update(order_params)
-      flash[:success] = "Заказ обновлен."
+      flash[:success] = "Статус заказа обновлен"
       redirect_to [:admin, @order]
     else
       render :edit

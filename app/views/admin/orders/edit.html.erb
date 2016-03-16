@@ -1,6 +1,6 @@
-<h1>Editing Order</h1>
+<h2>Смена статуса заказа</h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to 'Показать', [:admin, @order] %> |
+<%= link_to 'Назад', admin_orders_path %>

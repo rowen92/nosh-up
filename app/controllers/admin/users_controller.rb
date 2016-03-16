@@ -6,8 +6,12 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def destroy
-    @user.destroy
-    flash[:success] = "Аккаунт удален."
+    if @user != current_user
+      @user.destroy
+      flash[:success] = "Аккаунт удален"
+    else
+      flash[:alert] = "Ты не можешь удалить сам себя"
+    end
     redirect_to :back
   end
 

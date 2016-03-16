@@ -19,4 +19,8 @@ module ApplicationHelper
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=200"
   end
 
+  def order_total_price
+    @line_items.to_a.sum { |item| item.total_price }
+  end
+
 end

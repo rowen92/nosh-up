@@ -1,25 +1,24 @@
-<h1>Listing Orders</h1>
+<h2>Заказы</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Status</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
+<div class="table-responsive">
+  <table class="table table-striped table-hover vertical-align">
+    <thead>
       <tr>
-        <td><%= order.status %></td>
-        <td><%= order.user %></td>
-        <td><%= link_to 'Show', [:admin, order] %></td>
-        <td><%= link_to 'Edit', edit_admin_order_path(order) %></td>
-        <td><%= link_to 'Destroy', [:admin, order], method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <th>#</th>
+        <th>Статус</th>
+        <th>Дата</th>
+        <th>Пользователь</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.id, [:admin, order] %></td>
+          <td><%= order.status %></td>
+          <td><%= order.created_at %></td>
+          <td><%= link_to order.user.name, user_path(order.user) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
