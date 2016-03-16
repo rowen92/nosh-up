@@ -1,0 +1,23 @@
+<h2>Корзина:</h2>
+<div class="col-md-6">
+  <table class="table">
+    <% @line_items.each do |line_item| %>
+    <tr>
+      <td><%= link_to line_item.product.title, product_path(line_item.product) %></td>
+      <td><%= line_item.quantity %></td>
+      <td><%= number_to_currency(line_item.product.price, unit: "₴") %></td>
+      <td>
+        <%= button_to '+', { controller: 'line_items', action: 'increase_quantity', line_item: line_item }  %>
+      </td>
+      <td>
+        <%= button_to '-', { controller: 'line_items', action: 'decrease_quantity', line_item: line_item }  %>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td>Сумма:</td>
+      <td><%= number_to_currency(@cart.total_price, unit: "₴") %></td>
+    </tr>
+  </table>
+  <%= button_to "Очистить корзину", @cart, method: :delete, data: { confirm: 'Вы уверены?' } %>
+</div>

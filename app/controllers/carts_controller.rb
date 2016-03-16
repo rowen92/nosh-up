@@ -2,8 +2,8 @@ class CartsController < ApplicationController
 
   def show
     @cart = Cart.find(session[:cart_id])
-    # @line_items = @cart.line_items
-    # @order = Order.new
+    @line_items = @cart.line_items
+    @order = Order.new
   end
 
   def destroy

@@ -1,19 +1,22 @@
 Rails.application.routes.draw do
-  resources :orders
-  resources :products
   # get 'categories' =>'categories#index'
   # get 'categories/:id' => 'categories#show'
-  get 'admin' => 'admin/admin#index'
-  resources :categories, :users, :sessions, :products
+  post 'line_items/increase_quantity' => 'line_items#increase_quantity'
+  post 'line_item/decrease_quantity' => 'line_items#decrease_quantity'
+  resources :line_items, only: [:create, :destroy]
+  resources :categories, :users, :sessions, :products, :orders
+
+  get 'cart' => 'carts#show'
+  delete 'cart.:id' => 'carts#destroy'
 
   namespace :admin do
-    resources :categories, :users, :products
+    resources :categories, :users, :products, :orders
     get 'users/:id/make_admin' =>'users#make_admin', as: :make_admin
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
+  get 'admin' => 'admin/admin#index'
   root 'pages#index'
 
   # Example of regular route:

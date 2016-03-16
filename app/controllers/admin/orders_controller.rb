@@ -13,7 +13,8 @@ class Admin::OrdersController < Admin::AdminController
 
   def update
     if @order.update(order_params)
-      redirect_to @order, notice: "Заказ обновлен."
+      flash[:success] = "Заказ обновлен."
+      redirect_to [:admin, @order]
     else
       render :edit
     end
@@ -21,13 +22,18 @@ class Admin::OrdersController < Admin::AdminController
 
   def destroy
     @order.destroy
-    redirect_to orders_url, notice: "Заказ удален."
+    flash[:success] = "Заказ удален."
+    redirect_to admin_orders_url
   end
 
   private
 
     def set_order
       @order = Order.find(params[:id])
+    end
+
+    def order_params
+      params.require(:order).permit(:status)
     end
 
 end

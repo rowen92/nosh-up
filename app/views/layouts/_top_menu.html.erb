@@ -14,8 +14,11 @@
         <%= content_tag :li, class: current_page?(root_path) ? "active" : "" do %>
           <%= link_to "Домашня", root_path %>
         <% end %>
-        <%= content_tag :li, class: current_page?("") ? "active" : "" do %>
-          <%= link_to "Меню", "" %>
+        <%= content_tag :li, class: current_page?(products_path) ? "active" : "" do %>
+          <%= link_to "Меню", products_path %>
+        <% end %>
+        <%= content_tag :li, class: current_page?(cart_path) ? "active" : "" do %>
+          <%= link_to "Корзина", cart_path %>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
