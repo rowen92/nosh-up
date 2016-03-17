@@ -1,6 +1,7 @@
 <p>
-  <strong>Статус:</strong>
-  <%= @order.status %>
+  <strong>Статус выполнения:</strong>
+  <%= @order.status.humanize %>
+  <%= link_to 'сменить', edit_admin_order_path(@order) %>
 </p>
 
 <p>
@@ -33,6 +34,4 @@
   </table>
 </div>
 
-
-<%= link_to 'Сменить статус', edit_admin_order_path(@order) %> |
 <%= link_to 'Назад', admin_orders_path %>

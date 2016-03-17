@@ -2,7 +2,7 @@ class Admin::CategoriesController < Admin::AdminController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @categories = Category.all
+    @categories = Category.all.order(created_at: "DESC")
   end
 
   def show
@@ -27,7 +27,7 @@ class Admin::CategoriesController < Admin::AdminController
 
   def update
     if @category.update(category_params)
-      flash[:success] = "Категория обновлена."
+      flash[:success] = "Категория обновлена"
       redirect_to ([:admin, @category])
     else
       render :edit
@@ -36,7 +36,7 @@ class Admin::CategoriesController < Admin::AdminController
 
   def destroy
     @category.destroy
-    flash[:success] = "Категория удалена."
+    flash[:success] = "Категория удалена"
     redirect_to admin_categories_path
   end
 

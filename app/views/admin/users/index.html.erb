@@ -6,6 +6,7 @@
         <th>Имя</th>
         <th>Email</th>
         <th>Роль</th>
+        <th>Дата регистрации</th>
       </tr>
     </thead>
 
@@ -15,6 +16,7 @@
           <td><%= user.name %></td>
           <td><%= user.email %></td>
           <td><%= user.role %></td>
+          <td><%= user.created_at.strftime("%m-%e-%y %H:%M") %></td>
           <td>
             <%= link_to user, target: "_blank" do %>
               <span class="glyphicon glyphicon-eye-open text-muted" aria-hidden="true"></span>

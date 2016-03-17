@@ -3,7 +3,7 @@ class Admin::ProductsController < Admin::AdminController
   before_action :get_collect_categories, except: [:index, :show, :destroy]
 
   def index
-    @products = Product.all
+    @products = Product.all.order(created_at: "DESC")
   end
 
   def show
@@ -28,7 +28,7 @@ class Admin::ProductsController < Admin::AdminController
 
   def update
     if @product.update(product_params)
-      flash[:success] = "Продукт обновлен."
+      flash[:success] = "Продукт обновлен"
       redirect_to [:admin, @product]
     else
       render :edit
@@ -37,7 +37,7 @@ class Admin::ProductsController < Admin::AdminController
 
   def destroy
     @product.destroy
-    flash[:success] = "Продукт удален."
+    flash[:success] = "Продукт удален"
     redirect_to admin_products_url
   end
 

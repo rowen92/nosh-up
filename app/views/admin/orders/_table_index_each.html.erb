@@ -1,0 +1,32 @@
+<div class="table-responsive">
+  <table class="table table-striped table-hover vertical-align">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Статус выполнения</th>
+        <th>Дата</th>
+        <th>Пользователь</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <%= content_tag :tr,
+          class: case order.status
+          when "primary"
+            "warning"
+          when "in_progress"
+            "active"
+          when "complete"
+            "success"
+          else "cancel"
+            "danger"
+          end do %>
+          <td><%= link_to order.id, [:admin, order] %></td>
+          <td><%= order.status.humanize %></td>
+          <td><%= order.created_at.strftime("%m-%e-%y %H:%M") %></td>
+          <td><%= link_to order.user.name, user_path(order.user) %></td>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

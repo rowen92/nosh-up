@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:success] = "Ваши данные обновлены."
+      flash[:success] = "Ваши данные обновлены"
       redirect_to @user
     else
       render :edit

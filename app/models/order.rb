@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :line_items, dependent: :destroy
 
-  enum status: [:in_progress, :completed, :canceled]
+  enum status: [:primary, :in_progress, :complete, :cancel]
   # STATUS = ["Новый", "Передан на исполнение", "Завершен", "Отменен"]
 
   validates :user, :status, presence: true
