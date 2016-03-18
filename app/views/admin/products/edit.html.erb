@@ -1,4 +1,6 @@
 <%= render 'form' %>
 
-<%= link_to 'Показать', [:admin, @product] %> |
-<%= link_to 'Назад', admin_products_path %>
+<div class="col-xs-12">
+  <%= link_to 'К списку продуктов', admin_products_path %> |
+  <%= link_to 'Показать', [:admin, @product] %>
+</div>
