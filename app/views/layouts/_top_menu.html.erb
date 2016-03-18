@@ -26,7 +26,10 @@
           </ul>
         </li>
         <%= content_tag :li, class: current_page?(cart_path) ? "active" : "" do %>
-          <%= link_to "Корзина", cart_path %>
+          <%= link_to cart_path do %>
+            Корзина
+            <span class="badge"><%= @line_items_count %></span>
+          <% end %>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
