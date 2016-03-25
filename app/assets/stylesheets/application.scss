@@ -42,3 +42,15 @@
   .borderless td, .borderless th {
     border: none !important;
   }
+
+  .comment-block{
+    padding: 10px;
+    border-bottom: 1px dashed #D4D4D4;
+
+    &:hover{
+      background-color: #F7F7F7;
+      border-radius: 5px;
+      border: 0;
+      padding-bottom: 11px;
+    }
+  }

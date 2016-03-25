@@ -2,7 +2,7 @@ class Admin::CategoriesController < Admin::AdminController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @categories = Category.all.order(created_at: "DESC")
+    @categories = Category.all.order(:title)
   end
 
   def show

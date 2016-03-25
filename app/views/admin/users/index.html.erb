@@ -13,15 +13,10 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.name %></td>
+          <td><%= link_to user.name, user, target: "_blank" %></td>
           <td><%= user.email %></td>
           <td><%= user.role %></td>
           <td><%= user.created_at.strftime("%m-%e-%y %H:%M") %></td>
-          <td>
-            <%= link_to user, target: "_blank" do %>
-              <span class="glyphicon glyphicon-eye-open text-muted" aria-hidden="true"></span>
-            <% end %>
-          </td>
           <td>
             <%= link_to [:admin, user], method: :delete, data: { confirm: 'Вы уверены?' } do %>
               <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>

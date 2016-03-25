@@ -1,12 +1,15 @@
-<li class="media">
+<li class="media comment-block">
   <%= image_tag avatar_url(comment.user), width: "64px", class: "img-responsive pull-left" %>
   <div class="media-body">
     <h4 class="media-heading"><%= comment.user.name %></h4>
     <div class="media">
-      <%= comment.body %>
-   </div>
-   <%= link_to "Удалить комментарий", [comment.product, comment],
+      <i><%= comment.body %></i>
+    </div>
+    <% if current_user %>
+      <%= link_to "Удалить", [comment.product, comment],
                                          method: :delete,
-                                         data: { confirm: "Вы уверены?" } %>
+                                         data: { confirm: "Вы уверены?" },
+                                         class: "pull-right btn btn-danger btn-xs" %>
+    <% end %>
   </div>
 </li>

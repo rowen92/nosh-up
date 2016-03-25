@@ -3,7 +3,7 @@ class Admin::ProductsController < Admin::AdminController
   before_action :get_collect_categories, except: [:index, :show, :destroy]
 
   def index
-    @products = Product.all.order(created_at: "DESC")
+    @products = Product.all.order(:title)
   end
 
   def show

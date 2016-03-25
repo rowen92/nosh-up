@@ -14,15 +14,10 @@
     <tbody>
       <% @products.each do |product| %>
         <tr>
-          <td><%= product.title %></td>
+          <td><%= link_to product.title, [:admin, product] %></td>
           <td><%= number_to_currency(product.price, unit: "₴") %></td>
           <td><%= image_tag product.image_url(:small) if product.image? %></td>
           <td><%= product.category.title %></td>
-          <td>
-            <%= link_to [:admin, product] do %>
-              <span class="glyphicon glyphicon-eye-open text-muted" aria-hidden="true"></span>
-            <% end %>
-          </td>
           <td>
             <%= link_to edit_admin_product_path(product) do %>
               <span class="glyphicon glyphicon-pencil text-muted" aria-hidden="true"></span>

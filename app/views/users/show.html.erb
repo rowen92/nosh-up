@@ -1,7 +1,7 @@
-<div class="col-xs-3 col-md-3 col-sm-3">
+<div class="col-xs-12 col-md-3 col-sm-3">
   <%= image_tag avatar_url(@user), class: "img-responsive img-rounded" %>
 </div>
-<div class="col-xs-9 col-md-9 col-sm-9">
+<div class="col-xs-12 col-md-9 col-sm-9">
   <table class="table">
     <tr>
       <td>
@@ -37,12 +37,13 @@
     </tr>
   </table>
   <% if current_user == @user %>
-    <%= link_to "Редактировать", edit_user_path(current_user), class: "btn btn-link" %>
-    <%= render "orders/list_orders" %>
+    <%= link_to "Редактировать", edit_user_path(current_user), class: "btn btn-default pull-right" %>
   <% end %>
   <% if current_user != @user %>
     <%= link_to @make_admin_button, admin_make_admin_path(user_id: @user.id),
-                                    class: "btn btn-link",
-                                    data: { confirm: "Вы уверенны?" } %>
+                                    class: "btn btn-default pull-right",
+                                    data: { confirm: "Вы уверены?" } %>
   <% end %>
+  <div class="clearfix"></div>
+  <%= render "orders/list_orders" %>
 </div>

@@ -12,13 +12,8 @@
     <tbody>
       <% @categories.each do |category| %>
         <tr>
-          <td><%= category.title %></td>
+          <td><%= link_to category.title, [:admin, category] %></td>
           <td><%= image_tag category.image_url(:small) if category.image? %></td>
-          <td>
-            <%= link_to [:admin, category] do %>
-              <span class="glyphicon glyphicon-eye-open text-muted" aria-hidden="true"></span>
-            <% end %>
-          </td>
           <td>
             <%= link_to edit_admin_category_path(category) do %>
               <span class="glyphicon glyphicon-pencil text-muted" aria-hidden="true"></span>

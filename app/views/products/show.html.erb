@@ -8,9 +8,17 @@
   <h4 class="text-danger text-right"><%= number_to_currency(@product.price, unit: "₴") %></h4>
   <p><%= button_to 'Купить', line_items_path(product_id: @product), class: 'btn btn-success btn-block' %></p>
 </div>
-<h3>Комментарии к блюду</h3>
+<div class="clearfix"></div>
+<div class="col-md-12">
+  <% if @product.comments.present? %>
+    <h4>Комментарии к блюду</h4>
+  <% else %>
+    <h4>Комментариев еще нет</h4>
+  <% end %>
+
 <ul class="media-list">
   <%= render @product.comments %>
 </ul>
-<h3>Добавить комментарий</h3>
-<%= render "comments/form" %>
+
+    <%= render "comments/form" %>
+  </div>
