@@ -1,22 +1,22 @@
 <h2>Корзина:</h2>
 <div class="col-md-12">
-  <table class="table">
+  <table class="table table-striped vertical-align">
     <% @line_items.each do |line_item| %>
     <tr>
       <td><%= image_tag line_item.product.image_url(:small) if line_item.product.image? %></td>
       <td><%= link_to line_item.product.title, product_path(line_item.product) %></td>
-      <td><%= line_item.quantity %></td>
       <td>
         <%= button_to '-', { controller: 'line_items',
                              action: 'decrease_quantity',
                              line_item: line_item },
-                             class: "btn btn-danger"  %>
+                             class: "btn btn-danger btn-xs"  %>
       </td>
+      <td><%= line_item.quantity %></td>
       <td>
         <%= button_to '+', { controller: 'line_items',
                              action: 'increase_quantity',
                              line_item: line_item },
-                             class: "btn btn-success"  %>
+                             class: "btn btn-success btn-xs"  %>
       </td>
       <td><%= number_to_currency(line_item.product.price, unit: "₴") %></td>
     </tr>
@@ -26,10 +26,10 @@
       <td><h4 class="text-danger"><%= number_to_currency(order_total_price, unit: "₴") %></h4></td>
     </tr>
   </table>
-  <div class="col-xs-6">
+  <div class="col-md-2 col-xs-5">
     <%= button_to "Очистить корзину", @cart, class: "btn btn-danger", method: :delete, data: { confirm: 'Вы уверены?' } %>
   </div>
-  <div class="col-xs-6">
+  <div class="col-md-2 col-xs-5">
     <%= render "orders/form" %>
   </div>
 </div>

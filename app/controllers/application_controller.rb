@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def list_orders
+    @orders = Order.where(user: current_user).order(:created_at)
+  end
+
     def line_items_count
       @line_items_count = current_cart.line_items.count
     end
@@ -21,7 +25,7 @@ class ApplicationController < ActionController::Base
     def authenticate_user
       unless current_user
         flash[:alert] = "Эта функция доступна только зарегистрированному пользователю!"
-        redirect_to :back
+        redirect_to new_session_path
       else
         true
       end

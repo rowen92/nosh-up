@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   has_secure_password
 
+  has_many :comments
+  has_many :orders
+
   before_save { email.downcase! }
 
   validates :name, presence: true

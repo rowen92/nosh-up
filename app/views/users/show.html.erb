@@ -38,6 +38,7 @@
   </table>
   <% if current_user == @user %>
     <%= link_to "Редактировать", edit_user_path(current_user), class: "btn btn-link" %>
+    <%= render "orders/list_orders" %>
   <% end %>
   <% if current_user != @user %>
     <%= link_to @make_admin_button, admin_make_admin_path(user_id: @user.id),

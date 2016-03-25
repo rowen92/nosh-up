@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   post 'line_items/increase_quantity' => 'line_items#increase_quantity'
   post 'line_item/decrease_quantity' => 'line_items#decrease_quantity'
   resources :line_items, only: [:create, :destroy]
-  resources :categories, :users, :sessions, :products, :orders
+  resources :categories, :users, :sessions, :orders
+
+  resources :products do
+    resources :comments
+  end
 
   get 'cart' => 'carts#show'
   delete 'cart.:id' => 'carts#destroy'
