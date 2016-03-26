@@ -1,0 +1,7 @@
+<div class="col-md-4">
+  <%= image_tag category.image_url(:middle) if category.image? %>
+  <h2><%= category.title %></h2>
+  <p><%= category.description %></p>
+  <p><%= link_to "Посмотреть продукты »", products_path(category: category),
+                                          class: "btn btn-default pull-right" %></p>
+</div>

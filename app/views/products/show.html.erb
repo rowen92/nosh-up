@@ -15,10 +15,8 @@
   <% else %>
     <h4>Комментариев еще нет</h4>
   <% end %>
-
-<ul class="media-list">
-  <%= render @product.comments %>
-</ul>
-
-    <%= render "comments/form" %>
-  </div>
+  <ul class="media-list">
+    <%= render @product.comments %>
+  </ul>
+  <%= render "comments/form" %>
+</div>

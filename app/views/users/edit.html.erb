@@ -1,2 +1,5 @@
 <h2>Редактирование</h2>
 <%= render 'form' %>
+<div class="col-xs-3 pull-right">
+  <%= link_to 'Отмена', user_path(current_user) , class: "btn btn-danger btn-block"%>
+</div>

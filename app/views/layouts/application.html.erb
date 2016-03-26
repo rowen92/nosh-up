@@ -12,13 +12,9 @@
 <body>
   <%= render "layouts/top_menu" %>
   <div class="container">
-
     <%= flash_messages %>
     <%= yield %>
-
-    <footer>
-      <p class="text-center">&copy; Nosh-up <%= Date.today.year %></p>
-    </footer>
   </div>
+  <%= render "layouts/footer" %>
 </body>
 </html>
