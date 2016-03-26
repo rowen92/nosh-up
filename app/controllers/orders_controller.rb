@@ -1,5 +1,10 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user
+  before_action :set_order, only: [:show]
+
+  def show
+    @line_items = @order.line_items
+  end
 
   def create
     @cart = current_cart
@@ -23,5 +28,11 @@ class OrdersController < ApplicationController
       redirect_to :back
     end
   end
+
+  private
+
+    def set_order
+      @order = Order.find(params[:id])
+    end
 
 end

@@ -9,27 +9,4 @@
   <%= @order.user.name %>
 </p>
 
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Продукт</th>
-        <th>Количество</th>
-        <th>Цена</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @line_items.each do |li| %>
-        <tr>
-          <td><%= link_to li.product.title, product_path(li.product) %></td>
-          <td><%= li.quantity %></td>
-          <td><%= number_to_currency(li.product.price, unit: "₴") %></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td>Общая сумма:</td>
-        <td><%= number_to_currency(order_total_price, unit: "₴") %></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<%= render "admin/orders/list_line_items" %>
