@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   def edit
     @password_placeholder = "Оставьте пустым, если не хотите изменять"
     @submit_value = "Сохранить"
+    @user_class_submit = "col-xs-6"
   end
 
   def create

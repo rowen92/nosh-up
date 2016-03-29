@@ -14,17 +14,6 @@
         <%= content_tag :li, class: current_page?(root_path) ? "active" : "" do %>
           <%= link_to "Домашня", root_path %>
         <% end %>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <%= "Меню" %>
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <% @categories.each do |category| %>
-              <li><%= link_to category.title, products_path(category: category) %></li>
-            <% end %>
-          </ul>
-        </li>
         <%= content_tag :li, class: current_page?(cart_path) ? "active" : "" do %>
           <%= link_to cart_path do %>
             Корзина

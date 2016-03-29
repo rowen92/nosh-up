@@ -1,0 +1,9 @@
+<nav>
+  <ul class="nav nav-justified">
+    <% @categories.each do |category| %>
+      <%= content_tag :li, class: current_page?(products_path(category: category)) ? "active" : "" do %>
+        <%= link_to category.title, products_path(category: category) %>
+      <% end %>
+    <% end %>
+  </ul>
+</nav>

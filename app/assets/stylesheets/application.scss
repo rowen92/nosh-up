@@ -15,14 +15,16 @@
   @import "bootstrap";
   @import "font-awesome";
   @import "dashboard";
-  @import "carousel";
+  @import "nav-menu";
 
   html {
     position: relative;
     min-height: 100%;
+    overflow-x: hidden;
+    overflow-y:scroll;
   }
   body {
-    padding-top: 70px;
+    padding-top: 50px;
     background-color: #FBFBFB;
     margin-bottom: 60px;
   }
@@ -73,4 +75,12 @@
 
   .border-none td{
     border: none !important;
+  }
+
+  .container-padding-top{
+    padding-top: 20px;
+  }
+
+  .carousel {
+    margin-bottom: 50px;
   }
