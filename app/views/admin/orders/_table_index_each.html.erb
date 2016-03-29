@@ -12,13 +12,13 @@
       <% @orders.each do |order| %>
         <%= content_tag :tr,
           class: case order.status
-          when "primary"
+          when "Новый"
             "warning"
-          when "in_progress"
+          when "В обработке"
             "active"
-          when "complete"
+          when "Выполнен"
             "success"
-          else "cancel"
+          else "Отменен"
             "danger"
           end do %>
           <td><%= link_to order.id, [:admin, order] %></td>

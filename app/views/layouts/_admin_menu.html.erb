@@ -29,7 +29,7 @@
           <%= link_to "Админ-панель", admin_path %>
         <% end %>
         <%= content_tag :li, class: current_page?(user_path(current_user)) ? "active" : "" do %>
-          <%= link_to "Профиль", user_path(current_user), target: "_blank" %>
+          <%= link_to "Профиль", user_path(current_user) %>
         <% end %>
         <li><%= link_to "Выход", session_path(session), method: :delete %></li>
       </ul>

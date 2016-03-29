@@ -20,12 +20,11 @@ class Admin::UsersController < Admin::AdminController
     if @make_admin.user?
       @make_admin.update(role: "admin")
       flash[:success] = "Он теперь тоже админ!"
-      redirect_to :back
     else
       @make_admin.update(role: "user")
       flash[:success] = "Понижен до уровня плебея..."
-      redirect_to :back
     end
+    redirect_to :back
   end
 
   private

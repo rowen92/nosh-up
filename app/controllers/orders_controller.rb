@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     @cart = current_cart
     @order = Order.new
     @order.add_line_items_from_cart(@cart)
-    @order.status = :primary
+    @order.status = :"Новый"
     @order.user = current_user
     if @cart.line_items.empty?
       flash[:alert] = "Корзина пустая, для заказа выберите продукт"
