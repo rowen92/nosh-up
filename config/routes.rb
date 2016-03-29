@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'line_item/decrease_quantity' => 'line_items#decrease_quantity'
   resources :line_items, only: [:create, :destroy]
   resources :categories, :users, :sessions, :orders
+  get 'search_suggestions' => 'products#search_suggestions', as: :search_suggestions
 
   resources :products do
     resources :comments

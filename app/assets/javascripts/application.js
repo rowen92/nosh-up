@@ -16,8 +16,24 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
-$(document).ready(function () {
-  $('[data-toggle="offcanvas"]').click(function () {
-    $('.row-offcanvas').toggleClass('active')
-  });
-});
+var ready;
+ready = function () {
+    $('#query').bind("change input paste", function(){
+        var val = $(this).val();
+        $.get( "/search_suggestions?query="+val, function(data) {
+            $('#results').empty();
+            $('#results').show();
+            $.each(data, function(index, result) {
+                if (index < 10){
+                    $('#results').append("<li><a href=/products/"+result.id+">"+result.title+"</a></li>");
+                }
+            });
+            if (typeof (val) == 'undefined' || val == null || val == "" || data == "") {
+                $('#results').hide();
+            }
+        });
+    });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

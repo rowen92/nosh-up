@@ -3,14 +3,27 @@ class ProductsController < ApplicationController
 
   def index
     @category = Category.where(id: params[:category]).first if params[:category].present?
-    @products = if @category.present?
-                  @category.products.page(params[:page]).order(created_at: "DESC")
+    @products = if params[:query].present?
+                  Product.search(params[:query]).page(params[:page]).order(created_at: "DESC")
                 else
-                  Product.page(params[:page]).order(created_at: "DESC")
+                  if @category.present?
+                    @category.products.page(params[:page]).order(created_at: "DESC")
+                  else
+                    Product.page(params[:page]).order(created_at: "DESC")
+                  end
                 end
   end
 
   def show
+  end
+
+  def search_suggestions
+    results = if params[:query].present?
+                Product.search_for_ajax(params[:query])
+              else
+                []
+              end
+    render json: results
   end
 
   private

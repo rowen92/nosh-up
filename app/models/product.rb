@@ -18,6 +18,14 @@ class Product < ActiveRecord::Base
 
   private
 
+    def self.search(query)
+      where('title LIKE ? OR description LIKE ?', "%#{query}%", "%#{query}%")
+    end
+
+    def self.search_for_ajax(query)
+      where('title LIKE ? OR description LIKE ?', "%#{query}%", "%#{query}%").select(:id, :title)
+    end
+
     def ensure_not_referenced
       if line_items.empty?
         true
