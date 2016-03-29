@@ -14,6 +14,8 @@ class Product < ActiveRecord::Base
 
   mount_uploader :image, ProductUploader
 
+  self.per_page = 3
+
   private
 
     def ensure_not_referenced

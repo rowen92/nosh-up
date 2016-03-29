@@ -4,9 +4,9 @@ class ProductsController < ApplicationController
   def index
     @category = Category.where(id: params[:category]).first if params[:category].present?
     @products = if @category.present?
-                  @category.products.order(created_at: "DESC")
+                  @category.products.page(params[:page]).order(created_at: "DESC")
                 else
-                  Product.all.order(created_at: "DESC")
+                  Product.page(params[:page]).order(created_at: "DESC")
                 end
   end
 
