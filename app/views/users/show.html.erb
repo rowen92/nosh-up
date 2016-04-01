@@ -11,6 +11,16 @@
         <%= @user.name %>
       </td>
     </tr>
+    <% if current_user.admin? %>
+      <tr>
+        <td>
+          <strong>Роль:</strong>
+        </td>
+        <td>
+          <%= @user.role.humanize %>
+        </td>
+      </tr>
+    <% end %>
     <tr>
       <td>
         <strong>Email:</strong>
@@ -38,11 +48,6 @@
   </table>
   <% if current_user == @user %>
     <%= link_to "Редактировать", edit_user_path(current_user), class: "btn btn-default pull-right" %>
-  <% end %>
-  <% if current_user != @user %>
-    <%= link_to @make_admin_button, admin_make_admin_path(user_id: @user.id),
-                                    class: "btn btn-default pull-right",
-                                    data: { confirm: "Вы уверены?" } %>
   <% end %>
   <div class="clearfix"></div>
   <%= render "orders/list_orders" %>

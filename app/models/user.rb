@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
                        if: :password
   validates :address, presence: true
 
-  enum role: [:admin, :user]
+  enum role: [:admin, :user, :manager]
 
   def to_param
     "#{id} #{name}".parameterize

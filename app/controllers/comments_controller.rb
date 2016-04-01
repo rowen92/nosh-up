@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
       @comment.destroy
       flash[:success] = "Ваш комментарий удален"
     else
-      flash[:error] = "Вы можете удалить только свой комментарий"
+      flash[:alert] = "Вы можете удалить только свой комментарий"
     end
     redirect_to :back
   end

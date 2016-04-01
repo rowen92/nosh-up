@@ -1,0 +1,21 @@
+<%= form_for([:admin, user]) do |f| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <% user.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger alert-dismissible fade in" role=alert>
+          <button type=button class=close data-dismiss=alert aria-label=Close>
+            <span aria-hidden=true>&times;</span>
+          </button>
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.select(:role, User.roles.to_a.map{ |w| [w[0].humanize, w[0]] }, {}, { class: "form-control" }) %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary btn-block", value: "Изменить роль" %>
+  </div>
+<% end %>

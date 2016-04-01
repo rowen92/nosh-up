@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :set_user, only: [:show, :destroy]
+  before_action :set_user, only: [:destroy, :edit, :update]
 
   def index
     @users = User.all.order(:name)
@@ -15,16 +15,16 @@ class Admin::UsersController < Admin::AdminController
     redirect_to :back
   end
 
-  def make_admin
-    @make_admin = User.find(params[:user_id])
-    if @make_admin.user?
-      @make_admin.update(role: "admin")
-      flash[:success] = "Он теперь тоже админ!"
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      flash[:success] = "Роль изменена"
+      redirect_to :back
     else
-      @make_admin.update(role: "user")
-      flash[:success] = "Понижен до уровня плебея..."
+      render :edit
     end
-    redirect_to :back
   end
 
   private
@@ -35,6 +35,10 @@ class Admin::UsersController < Admin::AdminController
       else
         @user = current_user
       end
+    end
+
+    def user_params
+      params.require(:user).permit(:role)
     end
 
 end

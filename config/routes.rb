@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :categories, :users, :products, :orders
-    get 'users/:id/make_admin' =>'users#make_admin', as: :make_admin
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

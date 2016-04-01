@@ -18,6 +18,7 @@
 
 var ready;
 ready = function () {
+
     $('#query').bind("change input paste", function(){
         var val = $(this).val();
         $.get( "/search_suggestions?query="+val, function(data) {
@@ -33,6 +34,7 @@ ready = function () {
             }
         });
     });
+
 };
 
 $(document).ready(ready);
