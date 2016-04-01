@@ -1,5 +1,6 @@
 class Admin::CategoriesController < Admin::AdminController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :check_admin
 
   def index
     @categories = Category.all.order(:title)

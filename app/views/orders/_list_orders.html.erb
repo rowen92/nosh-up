@@ -1,6 +1,10 @@
-<h4>Мои заказы</h4>
+<% if current_user == @user %>
+  <h4>Мои заказы</h4>
+<% else %>
+  <h4>Заказы пользователя</h4>
+<% end %>
 <% if @orders.empty? %>
-  <h5 class="text-mute">Заказов еще нет, <%= link_to "купите", products_path %> что-то :)</h5>
+  <h5 class="text-mute">Заказов еще нет</h5>
 <% else %>
   <div class="table-responsive">
     <table class="table table-striped table-hover vertical-align">

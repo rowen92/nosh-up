@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Спасибо за регистрацию!"
-      current_user.admin? ? (redirect_to admin_path) : (redirect_to user_path(current_user))
+      current_user.admin? || current_user.manager? ? (redirect_to admin_path) : (redirect_to user_path(current_user))
     else
       render :new
     end
@@ -39,10 +39,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def list_orders
+    @orders = Order.where(user: @user).order(:created_at)
+  end
+
   private
 
     def set_user
-      if current_user.admin?
+      if current_user.admin? || current_user.manager?
         @user = User.find(params[:id])
       else
         @user = current_user

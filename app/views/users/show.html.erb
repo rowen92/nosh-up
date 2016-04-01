@@ -11,7 +11,7 @@
         <%= @user.name %>
       </td>
     </tr>
-    <% if current_user.admin? %>
+    <% if current_user.admin? || current_user.manager? %>
       <tr>
         <td>
           <strong>Роль:</strong>

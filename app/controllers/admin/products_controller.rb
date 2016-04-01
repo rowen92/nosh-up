@@ -1,6 +1,7 @@
 class Admin::ProductsController < Admin::AdminController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :get_collect_categories, except: [:index, :show, :destroy]
+  before_action :check_admin
 
   def index
     @products = Product.all.order(:title)

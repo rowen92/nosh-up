@@ -6,10 +6,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def list_orders
-    @orders = Order.where(user: current_user).order(:created_at)
-  end
-
     def line_items_count
       @line_items_count = current_cart.line_items.count
     end
@@ -31,12 +27,30 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def admin_only
+    def check_admin
       unless current_user && current_user.admin?
-        flash[:alert] = "Эта функция доступна только администратору!"
-        redirect_to root_path
+        flash[:alert] = "У вас нет прав для просмотра этой страницы!"
+        redirect_to :back
       end
     end
+
+    def check_manager
+      unless current_user && current_user.manager?
+        flash[:alert] = "У вас нет прав для просмотра этой страницы!"
+        redirect_to :back
+      end
+    end
+
+    def check_admin_and_manager
+      unless current_user && (current_user.manager? || current_user.admin?)
+        flash[:alert] = "У вас нет прав для просмотра этой страницы!"
+        redirect_to :back
+      end
+    end
+
+    # Пізда, як заїбало, ААААа-аАаАаа
+    # КорочЕ, освіжити голову, поїсти, а потім придумати норм алгоритм перевірки ролей
+    # Подивитись вивід своїх у чужих замовлень в профілі, там якась херня твориться,а так,то наче норм, пнх воно все
 
     def current_cart
       Cart.find(session[:cart_id])

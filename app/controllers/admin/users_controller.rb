@@ -1,5 +1,6 @@
 class Admin::UsersController < Admin::AdminController
   before_action :set_user, only: [:destroy, :edit, :update]
+  before_action :check_admin
 
   def index
     @users = User.all.order(:name)

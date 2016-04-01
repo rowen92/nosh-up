@@ -40,7 +40,7 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <% if current_user.admin? %>
+              <% if current_user.admin? || current_user.manager? %>
                 <li><%= link_to 'Админ-панель', admin_path %></li>
               <% end %>
               <li><%= link_to 'Профиль', user_path(current_user) %></li>

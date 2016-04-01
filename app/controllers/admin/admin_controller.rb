@@ -1,6 +1,6 @@
 class Admin::AdminController < ApplicationController
   layout 'admin'
-  before_action :admin_only
+  before_action :check_admin_and_manager
 
   def index
     @orders = Order.where(status: "primary")
