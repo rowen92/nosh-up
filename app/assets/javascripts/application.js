@@ -44,21 +44,44 @@ ready = function () {
       var totalPriceElement = $("#total_price");
       var totalPrice = parseFloat($(totalPriceElement).text());
       totalPrice -= (lineItemPrice*lineItemQuantity);
-
-      if(confirm("Убрать из корзины?")){
-        $.ajax({
-          url: "/line_items/" + $(currentLineItem).attr("data-line-item-id"),
-          type: "POST",
-          data: { _method: "DELETE" },
-          success: function(result){
-            $(currentLineItem).fadeOut(200);
-            $(totalPriceElement).text(totalPrice);
-            $(lineItemsCountElement).text(lineItemsCount - 1);
-            console.log(result);
-          }
-        });
-      };
+      $.ajax({
+        url: "/line_items/" + $(currentLineItem).attr("data-line-item-id"),
+        type: "POST",
+        data: { _method: "DELETE" },
+        success: function(result){
+          $(currentLineItem).fadeOut(200);
+          $(totalPriceElement).text(totalPrice);
+          $(lineItemsCountElement).text(lineItemsCount - 1);
+          console.log(result);
+        }
+      });
     });
+
+    $(".decrease-line-item").click(function(){
+      var currentLineItem = $(this).parents("tr")[0];
+      var lineItemQuantityElement = $(currentLineItem).children().next().next().next()[0];
+      var lineItemQuantity = parseInt($(lineItemQuantityElement).text());
+      var lineItemPrice = parseFloat($(currentLineItem).children().last().prev().children().attr("data-line-item-price"));
+      var totalPriceElement = $("#total_price");
+      var totalPrice = parseFloat($(totalPriceElement).text());
+      totalPrice = (totalPrice - lineItemPrice);
+      $.ajax({
+        url: "/line_items/decrease_quantity?line_item=" + $(currentLineItem).attr("data-line-item-id"),
+        type: "POST",
+        success: function(result){
+          if (lineItemQuantity > 1) {
+            $(lineItemQuantityElement).text(lineItemQuantity-1);
+          }
+          else{
+            $(currentLineItem).fadeOut(200);
+          };
+          $(totalPriceElement).text(totalPrice);
+          console.log(result);
+        }
+      })
+    });
+
+    // Поправить вывод общей суммы, чтобы при парсинге числа не выводилась запятая ибо крашит, NaN
 
 };
 

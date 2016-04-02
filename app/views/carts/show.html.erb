@@ -7,17 +7,15 @@
         <td><%= image_tag line_item.product.image_url(:small) if line_item.product.image? %></td>
         <td><%= link_to line_item.product.title, product_path(line_item.product) %></td>
         <td>
-          <%= button_to '-', { controller: 'line_items',
-                               action: 'decrease_quantity',
-                               line_item: line_item },
-                               class: "btn btn-danger btn-xs"  %>
+          <button type="button" class="btn btn-link decrease-line-item pull-right">
+            <span class="glyphicon glyphicon-minus text-danger" aria-hidden="true"></span>
+          </button>
         </td>
-        <td data-line-item-quantity = "<%= line_item.quantity %>"><%= line_item.quantity %></td>
+        <td class="text-center" class="line-item-quantity"><%= line_item.quantity %></td>
         <td>
-          <%= button_to '+', { controller: 'line_items',
-                               action: 'increase_quantity',
-                               line_item: line_item },
-                               class: "btn btn-success btn-xs"  %>
+          <button type="button" class="btn btn-link increase-line-item pull-left">
+            <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
+          </button>
         </td>
         <td><span data-line-item-price = "<%= line_item.product.price %>"><%= number_to_currency(line_item.product.price, unit: "") %></span> грн</td>
         <td>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # get 'categories' =>'categories#index'
   # get 'categories/:id' => 'categories#show'
   post 'line_items/increase_quantity' => 'line_items#increase_quantity'
-  post 'line_item/decrease_quantity' => 'line_items#decrease_quantity'
+  post 'line_items/decrease_quantity' => 'line_items#decrease_quantity'
   resources :line_items, only: [:create, :destroy]
   resources :categories, :users, :sessions, :orders
   get 'search_suggestions' => 'products#search_suggestions', as: :search_suggestions

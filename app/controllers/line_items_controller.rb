@@ -32,7 +32,7 @@ class LineItemsController < ApplicationController
     else
       @line_item.update_attributes(quantity: @line_item.quantity -= 1)
     end
-    redirect_to :back
+    render json: { success: true }
   end
 
 end
