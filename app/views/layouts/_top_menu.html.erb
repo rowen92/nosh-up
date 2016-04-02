@@ -17,7 +17,7 @@
         <%= content_tag :li, class: current_page?(cart_path) ? "active" : "" do %>
           <%= link_to cart_path do %>
             Корзина
-            <span class="badge"><%= @line_items_count %></span>
+            <span id="line-items-count" class="badge"><%= @line_items_count %></span>
           <% end %>
         <% end %>
       </ul>

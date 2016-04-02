@@ -35,25 +35,26 @@ ready = function () {
         });
     });
 
-    $(".delete_line_item").click(function(){
-      var current_line_item = $(this).parents("tr")[0];
-      var line_item_price = parseFloat($(current_line_item).children().last().prev().children().attr("data-line-item-price"));
-      var $total_price_element = $("#total_price")
-      var total_price = parseFloat($total_price_element.text());
-      total_price = total_price - line_item_price;
-
-      console.log(line_item_price);
-      console.log(total_price);
+    $(".delete-line-item").click(function(){
+      var currentLineItem = $(this).parents("tr")[0];
+      var lineItemsCountElement = $("#line-items-count")
+      var lineItemsCount = parseInt($(lineItemsCountElement).text());
+      var lineItemPrice = parseFloat($(currentLineItem).children().last().prev().children().attr("data-line-item-price"));
+      var lineItemQuantity = parseInt($(currentLineItem).children().next().next().next().attr("data-line-item-quantity"));
+      var totalPriceElement = $("#total_price");
+      var totalPrice = parseFloat($(totalPriceElement).text());
+      totalPrice -= (lineItemPrice*lineItemQuantity);
 
       if(confirm("Убрать из корзины?")){
         $.ajax({
-          url: "/line_items/" + $(current_line_item).attr("data-line-item-id"),
+          url: "/line_items/" + $(currentLineItem).attr("data-line-item-id"),
           type: "POST",
           data: { _method: "DELETE" },
           success: function(result){
-            $(current_line_item).fadeOut(200);
-            $total_price_element.text(total_price);
-            console.log(result)
+            $(currentLineItem).fadeOut(200);
+            $(totalPriceElement).text(totalPrice);
+            $(lineItemsCountElement).text(lineItemsCount - 1);
+            console.log(result);
           }
         });
       };
