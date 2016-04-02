@@ -13,6 +13,12 @@ class LineItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @line_item = LineItem.find(params[:id])
+    @line_item.destroy
+    render json: { success: true }
+  end
+
   def increase_quantity
     @line_item = LineItem.find(params[:line_item])
     @line_item.update_attributes(quantity: @line_item.quantity += 1)

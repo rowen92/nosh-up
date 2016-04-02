@@ -35,6 +35,30 @@ ready = function () {
         });
     });
 
+    $(".delete_line_item").click(function(){
+      var current_line_item = $(this).parents("tr")[0];
+      var line_item_price = parseFloat($(current_line_item).children().last().prev().children().attr("data-line-item-price"));
+      var $total_price_element = $("#total_price")
+      var total_price = parseFloat($total_price_element.text());
+      total_price = total_price - line_item_price;
+
+      console.log(line_item_price);
+      console.log(total_price);
+
+      if(confirm("Убрать из корзины?")){
+        $.ajax({
+          url: "/line_items/" + $(current_line_item).attr("data-line-item-id"),
+          type: "POST",
+          data: { _method: "DELETE" },
+          success: function(result){
+            $(current_line_item).fadeOut(200);
+            $total_price_element.text(total_price);
+            console.log(result)
+          }
+        });
+      };
+    });
+
 };
 
 $(document).ready(ready);
