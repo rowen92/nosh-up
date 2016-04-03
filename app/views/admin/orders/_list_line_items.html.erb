@@ -2,6 +2,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>Фото</th>
         <th>Продукт</th>
         <th>Количество</th>
         <th>Цена</th>
@@ -10,9 +11,10 @@
     <tbody>
       <% @line_items.each do |li| %>
         <tr>
+          <td><%= image_tag li.product.image_url(:small) if li.product.image? %></td>
           <td><%= link_to li.product.title, product_path(li.product) %></td>
           <td><%= li.quantity %></td>
-          <td><%= number_to_currency(li.product.price, unit: "₴") %></td>
+          <td><%= number_to_currency(li.product.price, unit: "") %> грн</td>
         </tr>
       <% end %>
       <tr>

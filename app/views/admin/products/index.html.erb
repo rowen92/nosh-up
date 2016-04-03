@@ -15,7 +15,7 @@
       <% @products.each do |product| %>
         <tr>
           <td><%= link_to product.title, [:admin, product] %></td>
-          <td><%= number_to_currency(product.price, unit: "₴") %></td>
+          <td><%= number_to_currency(product.price, unit: "") %> грн</td>
           <td><%= image_tag product.image_url(:small) if product.image? %></td>
           <td><%= product.category.title %></td>
           <td>
