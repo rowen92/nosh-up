@@ -40,7 +40,8 @@ ready = function () {
       var lineItemsCountElement = $("#line-items-count")
       var lineItemsCount = parseInt($(lineItemsCountElement).text());
       var lineItemPrice = parseFloat($(currentLineItem).children().last().prev().children().attr("data-line-item-price"));
-      var lineItemQuantity = parseInt($(currentLineItem).children().next().next().next().attr("data-line-item-quantity"));
+      var lineItemQuantityElement = $(currentLineItem).children().next().next().next()[0];
+      var lineItemQuantity = parseInt($(lineItemQuantityElement).text());
       var totalPriceElement = $("#total_price");
       var totalPrice = parseFloat($(totalPriceElement).text());
       totalPrice -= (lineItemPrice*lineItemQuantity);
@@ -59,6 +60,8 @@ ready = function () {
 
     $(".decrease-line-item").click(function(){
       var currentLineItem = $(this).parents("tr")[0];
+      var lineItemsCountElement = $("#line-items-count")
+      var lineItemsCount = parseInt($(lineItemsCountElement).text());
       var lineItemQuantityElement = $(currentLineItem).children().next().next().next()[0];
       var lineItemQuantity = parseInt($(lineItemQuantityElement).text());
       var lineItemPrice = parseFloat($(currentLineItem).children().last().prev().children().attr("data-line-item-price"));
@@ -74,6 +77,7 @@ ready = function () {
           }
           else{
             $(currentLineItem).fadeOut(200);
+            $(lineItemsCountElement).text(lineItemsCount - 1);
           };
           $(totalPriceElement).text(totalPrice);
           console.log(result);
@@ -81,7 +85,24 @@ ready = function () {
       })
     });
 
-    // Поправить вывод общей суммы, чтобы при парсинге числа не выводилась запятая ибо крашит, NaN
+    $(".increase-line-item").click(function(){
+      var currentLineItem = $(this).parents("tr")[0];
+      var lineItemQuantityElement = $(currentLineItem).children().next().next().next()[0];
+      var lineItemQuantity = parseInt($(lineItemQuantityElement).text());
+      var lineItemPrice = parseFloat($(currentLineItem).children().last().prev().children().attr("data-line-item-price"));
+      var totalPriceElement = $("#total_price");
+      var totalPrice = parseFloat($(totalPriceElement).text());
+      totalPrice = (totalPrice + lineItemPrice);
+      $.ajax({
+        url: "/line_items/increase_quantity?line_item=" + $(currentLineItem).attr("data-line-item-id"),
+        type: "POST",
+        success: function(result){
+          $(lineItemQuantityElement).text(lineItemQuantity+1);
+          $(totalPriceElement).text(totalPrice);
+          console.log(result);
+        }
+      })
+    });
 
 };
 

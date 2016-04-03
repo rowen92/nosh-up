@@ -22,7 +22,7 @@ class LineItemsController < ApplicationController
   def increase_quantity
     @line_item = LineItem.find(params[:line_item])
     @line_item.update_attributes(quantity: @line_item.quantity += 1)
-    redirect_to :back
+    render json: { success: true }
   end
 
   def decrease_quantity
