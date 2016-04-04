@@ -35,30 +35,7 @@ ready = function () {
         });
     });
 
-    $(".delete-line-item").click(function(){
-      var currentLineItem = $(this).parents("tr")[0];
-      var lineItemsCountElement = $("#line-items-count")
-      var lineItemsCount = parseInt($(lineItemsCountElement).text());
-      var lineItemPrice = parseFloat($(currentLineItem).children().last().prev().children().attr("data-line-item-price"));
-      var lineItemQuantityElement = $(currentLineItem).children().next().next().next()[0];
-      var lineItemQuantity = parseInt($(lineItemQuantityElement).text());
-      var totalPriceElement = $("#total_price");
-      var totalPrice = parseFloat($(totalPriceElement).text());
-      totalPrice -= (lineItemPrice*lineItemQuantity);
-      $.ajax({
-        url: "/line_items/" + $(currentLineItem).attr("data-line-item-id"),
-        type: "POST",
-        data: { _method: "DELETE" },
-        success: function(result){
-          $(currentLineItem).fadeOut(200);
-          $(totalPriceElement).text(totalPrice);
-          $(lineItemsCountElement).text(lineItemsCount - 1);
-          console.log(result);
-        }
-      });
-    });
-
-    $(".decrease-line-item").click(function(){
+    function doAjaxStuff(){
       var currentLineItem = $(this).parents("tr")[0];
       var lineItemsCountElement = $("#line-items-count")
       var lineItemsCount = parseInt($(lineItemsCountElement).text());
@@ -67,42 +44,53 @@ ready = function () {
       var lineItemPrice = parseFloat($(currentLineItem).children().last().prev().children().attr("data-line-item-price"));
       var totalPriceElement = $("#total_price");
       var totalPrice = parseFloat($(totalPriceElement).text());
-      totalPrice = (totalPrice - lineItemPrice);
-      $.ajax({
-        url: "/line_items/decrease_quantity?line_item=" + $(currentLineItem).attr("data-line-item-id"),
-        type: "POST",
-        success: function(result){
-          if (lineItemQuantity > 1) {
-            $(lineItemQuantityElement).text(lineItemQuantity-1);
+      if ($(this).hasClass("increase-line-item")){
+        $.ajax({
+          url: "/line_items/increase_quantity?line_item=" + $(currentLineItem).attr("data-line-item-id"),
+          type: "POST",
+          success: function(result){
+            totalPrice = (totalPrice + lineItemPrice);
+            $(lineItemQuantityElement).text(lineItemQuantity+1);
+            $(totalPriceElement).text(totalPrice);
+            console.log(result);
           }
-          else{
+        })
+      }
+      else if ($(this).hasClass("decrease-line-item")){
+        $.ajax({
+          url: "/line_items/decrease_quantity?line_item=" + $(currentLineItem).attr("data-line-item-id"),
+          type: "POST",
+          success: function(result){
+            totalPrice = (totalPrice - lineItemPrice);
+            if (lineItemQuantity > 1) {
+              $(lineItemQuantityElement).text(lineItemQuantity-1);
+            }
+            else{
+              $(currentLineItem).fadeOut(200);
+              $(lineItemsCountElement).text(lineItemsCount - 1);
+            };
+            $(totalPriceElement).text(totalPrice);
+            console.log(result);
+          }
+        })
+      }
+      else if ($(this).hasClass("delete-line-item")){
+        $.ajax({
+          url: "/line_items/" + $(currentLineItem).attr("data-line-item-id"),
+          type: "POST",
+          data: { _method: "DELETE" },
+          success: function(result){
+            totalPrice -= (lineItemPrice*lineItemQuantity);
             $(currentLineItem).fadeOut(200);
+            $(totalPriceElement).text(totalPrice);
             $(lineItemsCountElement).text(lineItemsCount - 1);
-          };
-          $(totalPriceElement).text(totalPrice);
-          console.log(result);
-        }
-      })
-    });
+            console.log(result);
+          }
+        });
+      }
+    };
 
-    $(".increase-line-item").click(function(){
-      var currentLineItem = $(this).parents("tr")[0];
-      var lineItemQuantityElement = $(currentLineItem).children().next().next().next()[0];
-      var lineItemQuantity = parseInt($(lineItemQuantityElement).text());
-      var lineItemPrice = parseFloat($(currentLineItem).children().last().prev().children().attr("data-line-item-price"));
-      var totalPriceElement = $("#total_price");
-      var totalPrice = parseFloat($(totalPriceElement).text());
-      totalPrice = (totalPrice + lineItemPrice);
-      $.ajax({
-        url: "/line_items/increase_quantity?line_item=" + $(currentLineItem).attr("data-line-item-id"),
-        type: "POST",
-        success: function(result){
-          $(lineItemQuantityElement).text(lineItemQuantity+1);
-          $(totalPriceElement).text(totalPrice);
-          console.log(result);
-        }
-      })
-    });
+    $(".increase-line-item, .decrease-line-item, .delete-line-item").on("click", doAjaxStuff);
 
 };
 

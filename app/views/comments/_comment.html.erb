@@ -5,7 +5,7 @@
     <div class="media">
       <i><%= comment.body %></i>
     </div>
-    <% if current_user == comment.user %>
+    <% if current_user == comment.user or current_user.admin? %>
       <%= link_to "Удалить", [comment.product, comment],
                                          method: :delete,
                                          data: { confirm: "Вы уверены?" },

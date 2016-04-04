@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  </head>
+  <body style="padding: 20px;">
+      <h3>Здравствуйте, <%= @user.name %></h3
+      <%= yield %>
+      <p>
+        С уважением, <%= link_to NoshUp, @url %>
+      </p>
+  </body>
+</html>

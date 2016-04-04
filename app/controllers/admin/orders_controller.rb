@@ -13,7 +13,9 @@ class Admin::OrdersController < Admin::AdminController
   end
 
   def update
+    @user = @order.user
     if @order.update(order_params)
+      UserMailer.order_status_change(@order, @order.user).deliver_later
       flash[:success] = "Статус заказа обновлен"
       redirect_to [:admin, @order]
     else
