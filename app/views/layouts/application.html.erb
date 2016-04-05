@@ -11,6 +11,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+  <div id='<%= "modal_cart" %>'class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Корзина</h4>
+        </div>
+        <div class="modal-body">
+          <%= render @cart %>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <%= render "layouts/top_menu" %>
   <div class="container">
     <%= render "layouts/nav_menu" %>

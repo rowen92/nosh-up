@@ -1,0 +1,14 @@
+<% if cart.line_items.present? %>
+  <table class="table table-striped vertical-align">
+    <%= render cart.line_items %>
+    <tr>
+      <td><h4>Сумма:</h4></td>
+      <td><h4 class="text-danger"><span id="total_price"><%= number_to_currency(cart.total_price, unit: "", delimiter: "") %></span> грн</h4></td>
+    </tr>
+  </table>
+  <div class="modal-footer">
+    <%= render "orders/form" %>
+  </div>
+<% else %>
+  <h5>В корзине еще нет товаров</h5>
+<% end %>

@@ -18,7 +18,8 @@ class Admin::OrdersController < Admin::AdminController
       UserMailer.order_status_change(@order, @order.user).deliver_later
       redirect_to [:admin, @order]
     else
-      render :edit
+      flash[:alert] = "Попробуйте еще раз..."
+      redirect_to :back
     end
   end
 

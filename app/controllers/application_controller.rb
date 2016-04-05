@@ -48,12 +48,9 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    # Пізда, як заїбало, ААААа-аАаАаа
-    # КорочЕ, освіжити голову, поїсти, а потім придумати норм алгоритм перевірки ролей
-    # Подивитись вивід своїх у чужих замовлень в профілі, там якась херня твориться,а так,то наче норм, пнх воно все
-
     def current_cart
-      Cart.find(session[:cart_id])
+      @order = Order.new
+      @cart = Cart.find(session[:cart_id])
     rescue ActiveRecord::RecordNotFound
       cart = Cart.create
       session[:cart_id] = cart.id
