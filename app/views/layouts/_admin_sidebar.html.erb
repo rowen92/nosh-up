@@ -1,16 +1,35 @@
 <div class="col-sm-3 col-md-2 sidebar">
   <ul class="nav nav-sidebar">
+
     <%= content_tag :li, class: current_page?(admin_orders_path) ? "active" : "" do %>
       <%= link_to "Заказы", admin_orders_path %>
     <% end %>
-    <%= content_tag :li, class: current_page?(admin_users_path) ? "active" : "" do %>
-      <%= link_to "Пользователи", admin_users_path %>
+
+    <%= content_tag :li, class: "sub" do %>
+      <%= link_to "Пользователи", "#" %>
+      <ul class="nav nav-sidebar">
+        <% User.roles.each do |role| %>
+          <%= content_tag :li, class: current_page?(admin_users_path(role: role[1])) ? "active" : "" do %>
+            <%= link_to role.to_a[0].humanize, admin_users_path(role: role[1]) %>
+          <% end %>
+        <% end %>
+      </ul>
     <% end %>
+
     <%= content_tag :li, class: current_page?(admin_categories_path) ? "active" : "" do %>
       <%= link_to "Категории", admin_categories_path %>
     <% end %>
-    <%= content_tag :li, class: current_page?(admin_products_path) ? "active" : "" do %>
-      <%= link_to "Продукты", admin_products_path %>
+
+    <%= content_tag :li, class: "sub" do %>
+      <%= link_to "Продукты", "#" %>
+      <ul class="nav nav-sidebar">
+        <% @categories.each do |category| %>
+          <%= content_tag :li, class: current_page?(admin_products_path(category: category)) ? "active" : "" do %>
+            <%= link_to category.title, admin_products_path(category: category) %>
+          <% end %>
+        <% end %>
+      </ul>
     <% end %>
+
   </ul>
 </div>

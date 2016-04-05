@@ -92,6 +92,23 @@ ready = function () {
 
     $(".increase-line-item, .decrease-line-item, .delete-line-item").on("click", doAjaxStuff);
 
+    $(".sub > a").click(function() {
+      var ul = $(this).next(),
+                clone = ul.clone().css({"height":"auto"}).appendTo(".sidebar"),
+                height = ul.css("height") === "0px" ? ul[0].scrollHeight + "px" : "0px";
+      clone.remove();
+      ul.animate({"height":height});
+      return false;
+    });
+    // $('.sidebar > ul > li > a').click(function(){
+    //   $('.sub a').removeClass('active');
+    //   $(this).addClass('active');
+    // }),
+    // $('.sub ul li a').click(function(){
+    //   $('.sub ul li a').removeClass('active');
+    //   $(this).addClass('active');
+    // });
+
 };
 
 $(document).ready(ready);

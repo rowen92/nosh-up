@@ -3,7 +3,6 @@
 </div>
 <div class="col-xs-8">
   <h4><%= @product.title %></h4>
-  <p><%= link_to @product.category.title, admin_categories_path, class: "text-right" %></p>
   <p class="text-muted"><%= @product.description %></p>
   <h4 class="text-danger text-right"><%= number_to_currency(@product.price, unit: "") %> грн</h4>
   <p><%= button_to 'Купить', line_items_path(product_id: @product), class: 'btn btn-success btn-block' %></p>

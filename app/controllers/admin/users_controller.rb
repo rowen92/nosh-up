@@ -3,7 +3,12 @@ class Admin::UsersController < Admin::AdminController
   before_action :check_admin
 
   def index
-    @users = User.all.order(:name)
+    if params[:role].present?
+      @users = User.where(role: params[:role]).order(:name)
+      @user_role = @users.first.role.humanize
+    else
+      @users = User.all.order(:name)
+    end
   end
 
   def destroy
@@ -21,7 +26,6 @@ class Admin::UsersController < Admin::AdminController
 
   def update
     if @user.update(user_params)
-      flash[:success] = "Роль изменена"
       redirect_to :back
     else
       render :edit

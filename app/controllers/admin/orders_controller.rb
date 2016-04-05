@@ -16,17 +16,10 @@ class Admin::OrdersController < Admin::AdminController
     @user = @order.user
     if @order.update(order_params)
       UserMailer.order_status_change(@order, @order.user).deliver_later
-      flash[:success] = "Статус заказа обновлен"
       redirect_to [:admin, @order]
     else
       render :edit
     end
-  end
-
-  def destroy
-    @order.destroy
-    flash[:success] = "Заказ удален"
-    redirect_to admin_orders_url
   end
 
   private

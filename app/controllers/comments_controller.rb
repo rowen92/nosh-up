@@ -6,7 +6,6 @@ class CommentsController < ApplicationController
     @comment = @product.comments.new(comment_params)
     @comment.user = current_user
     if @comment.save
-      flash[:success] = "Комментарий добавлен"
       redirect_to :back
     else
       flash[:error] = "Не удалось добавить комментарий"
@@ -19,7 +18,6 @@ class CommentsController < ApplicationController
     @comment = @product.comments.find(params[:id])
     if @comment.user == current_user || current_user.admin?
       @comment.destroy
-      flash[:success] = "Ваш комментарий удален"
     else
       flash[:alert] = "Вы можете удалить только свой комментарий"
     end

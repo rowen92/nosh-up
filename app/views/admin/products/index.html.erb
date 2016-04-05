@@ -1,4 +1,8 @@
-<h2>Продукты</h2>
+<% if @category.present? %>
+  <h2>Продукты: <%= @category.title %></h2>
+<% else %>
+  <h2>Все продукты</h2>
+<% end %>
 <%= link_to 'Новый продукт', new_admin_product_path, class: "btn btn-default btn-sm new-item-button" %>
 
 <div class="table-responsive">

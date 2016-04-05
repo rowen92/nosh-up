@@ -1,4 +1,8 @@
-<h2>Пользователи</h2>
+<% if @user_role.present? %>
+  <h2>Роль: <%= @user_role %></h2>
+<% else %>
+  <h2>Все пользователи</h2>
+<% end %>
 <div class="table-responsive">
   <table class="table table-striped table-hover vertical-align">
     <thead>

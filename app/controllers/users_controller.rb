@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   before_action :list_orders, only: [:show]
 
   def show
-    @make_admin_button = @user.admin? ? "Понизить до покупателя" : "Сделать админом"
   end
 
   def new

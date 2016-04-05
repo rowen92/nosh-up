@@ -4,7 +4,12 @@ class Admin::ProductsController < Admin::AdminController
   before_action :check_admin
 
   def index
-    @products = Product.all.order(:title)
+    @category = Category.where(id: params[:category]).first if params[:category].present?
+    @products = if @category.present?
+                  @category.products.order(:title)
+                else
+                  Product.all.order(:title)
+                end
   end
 
   def show

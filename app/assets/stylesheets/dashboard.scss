@@ -9,6 +9,7 @@
 
 .sidebar {
   display: none;
+  overflow: hidden;
 }
 
 .sidebar-toggle{
@@ -67,4 +68,46 @@
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
+}
+
+.sidebar > ul > li {
+    position: relative;
+}
+
+.sidebar .sub > ul {
+  height: 0;
+  overflow: hidden;
+  background: #FBFBFB;
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar .sub > ul {
+  height: 0;
+  overflow: hidden;
+  background: #FBFBFB;
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar .sub > ul > li {
+  border-bottom: 1px dotted #bababa;
+}
+
+.sidebar .sub > ul > li > a {
+  content: ">";
+  font-size: 95%;
+  display: block;
+  text-decoration: none;
+  padding: 9px 10px;
+  margin-left: 20px;
+  text-indent: 25px;
+}
+
+.sidebar .sub > a:after{
+  content: " »";
+}
+
+.sidebar .sub .nav-sidebar{
+  margin-bottom: 0;
 }

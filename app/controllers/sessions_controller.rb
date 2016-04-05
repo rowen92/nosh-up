@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      flash[:success] = "Авторизация прошла успешно!"
       current_user.admin? || current_user.manager? ? (redirect_to admin_path) : (redirect_to user_path(current_user))
     else
       flash[:error] = "Неправильный логин или пароль :("
