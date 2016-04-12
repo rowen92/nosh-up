@@ -1,5 +1,5 @@
 # Change these
-server '139.59.128.143', port: 80, roles: [:web, :app, :db], primary: true
+server '46.101.186.236', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:rowen92/nosh-up.git'
 set :application,     'nosh-up'
