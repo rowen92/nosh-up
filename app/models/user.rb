@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
   enum role: [:admin, :user, :manager]
 
+  self.per_page = 50
+
   def to_param
     "#{id} #{name}".parameterize
   end

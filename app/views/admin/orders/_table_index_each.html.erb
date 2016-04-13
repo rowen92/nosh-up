@@ -24,9 +24,12 @@
           <td><%= link_to order.id, [:admin, order] %></td>
           <td><%= order.status.humanize %></td>
           <td><%= order.created_at.strftime("%m-%e-%y %H:%M") %></td>
-          <td><%= link_to order.user.name, user_path(order.user) %></td>
+          <td><%= link_to order.user.name, user_path(order.user), target: "_blank" %></td>
         <% end %>
       <% end %>
     </tbody>
   </table>
+</div>
+<div class="paginate">
+  <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
 </div>

@@ -14,12 +14,12 @@ class Product < ActiveRecord::Base
 
   mount_uploader :image, ProductUploader
 
-  self.per_page = 3
+  self.per_page = 6
 
   private
 
     def self.search(query)
-      where('title LIKE ? OR description LIKE ?', "%#{query}%", "%#{query}%")
+      where('title ILIKE ? OR description ILIKE ?', "%#{query}%", "%#{query}%")
     end
 
     def self.search_for_ajax(query)

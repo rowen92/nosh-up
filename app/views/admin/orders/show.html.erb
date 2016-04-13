@@ -9,7 +9,7 @@
 
 <p>
   Пользователь:
-  <%= @order.user.name %>
+  <%= link_to @order.user.name, user_path(@order.user), target: "_blank" %>
 </p>
 
 <%= render "admin/orders/list_line_items" %>

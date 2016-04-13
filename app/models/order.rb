@@ -6,6 +6,8 @@ class Order < ActiveRecord::Base
 
   validates :user, :status, presence: true
 
+  self.per_page = 50
+
   def add_line_items_from_cart(cart)
     cart.line_items.each do |item|
       item.cart_id = nil

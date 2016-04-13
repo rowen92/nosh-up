@@ -22,17 +22,17 @@
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-
-        <%= form_tag(products_path, method: "GET", class: "navbar-form navbar-left") do %>
-          <div class="form-group">
-            <%= text_field_tag(:query, (params[:query].present? ? params[:query] : nil),
-                               class: 'form-control',
-                               placeholder: 'Поиск продуктов...',
-                               autocomplete: 'off') %>
-            <ul id="results"></ul>
-          </div>
-        <% end %>
-
+        <li>
+          <%= form_tag(products_path, method: "GET", class: "navbar-form navbar-left") do %>
+            <div class="form-group">
+              <%= text_field_tag(:query, (params[:query].present? ? params[:query] : nil),
+                                 class: 'form-control',
+                                 placeholder: 'Поиск продуктов...',
+                                 autocomplete: 'off') %>
+              <ul id="results"></ul>
+            </div>
+          <% end %>
+        </li>
         <% if current_user %>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">

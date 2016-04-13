@@ -4,8 +4,8 @@ class Admin::UsersController < Admin::AdminController
 
   def index
     if params[:role].present?
-      @users = User.where(role: params[:role]).order(:name)
-      @user_role = @users.first.role.humanize
+      @users = User.where(role: params[:role]).order(:name).page(params[:page])
+      @user_role = @users.first.role.humanize if @users.present?
     else
       @users = User.all.order(:name)
     end
