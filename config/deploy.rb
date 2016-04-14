@@ -46,7 +46,13 @@ namespace :puma do
   before :start, :make_dirs
 end
 
-before "deploy:assets:precompile", 'deploy:symlink_shared'
+after 'deploy:update_code', 'deploy:symlink_db'
+namespace :deploy do
+  desc "Symlinks the database.yml"
+  task :symlink_db, :roles => :app do
+    run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+  end
+end
 
 namespace :deploy do
   desc "Make sure local git is in sync with remote."
@@ -57,9 +63,6 @@ namespace :deploy do
         puts "Run `git push` to sync changes."
         exit
       end
-    end
-    task :symlink_shared do
-      run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     end
   end
 
