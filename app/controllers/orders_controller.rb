@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
       return
     end
     if @order.save
-      UserMailer.order_status_change(@order, @order.user).deliver_later
+      # UserMailer.order_status_change(@order, @order.user).deliver_later
       Cart.destroy(session[:cart_id])
       session[:cart_id] = nil
       flash[:success] = "Заказ выполнен!"

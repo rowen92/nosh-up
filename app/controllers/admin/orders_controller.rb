@@ -15,7 +15,7 @@ class Admin::OrdersController < Admin::AdminController
   def update
     @user = @order.user
     if @order.update(order_params)
-      UserMailer.order_status_change(@order, @order.user).deliver_later
+      # UserMailer.order_status_change(@order, @order.user).deliver_later
       redirect_to [:admin, @order]
     else
       flash[:alert] = "Попробуйте еще раз..."
