@@ -31,7 +31,7 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-# set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 namespace :puma do
@@ -46,8 +46,6 @@ namespace :puma do
   before :start, :make_dirs
 end
 
-before "deploy:assets:precompile", 'deploy:symlink_shared'
-
 namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
@@ -57,9 +55,6 @@ namespace :deploy do
         puts "Run `git push` to sync changes."
         exit
       end
-    end
-    task :symlink_shared do
-      run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     end
   end
 
