@@ -24,6 +24,7 @@ gem 'will_paginate-bootstrap'
 gem 'aws-sdk'
 gem "mail"
 gem 'puma'
+gem 'prawn', :git => "git://github.com/sandal/prawn.git", :submodules => true
 
 gem 'jquery-rails'
 gem 'turbolinks'

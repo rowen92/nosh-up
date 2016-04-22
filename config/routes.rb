@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  # get 'categories' =>'categories#index'
-  # get 'categories/:id' => 'categories#show'
+
   post 'line_items/increase_quantity' => 'line_items#increase_quantity'
   post 'line_items/decrease_quantity' => 'line_items#decrease_quantity'
   resources :line_items, only: [:create, :destroy]
@@ -15,10 +14,13 @@ Rails.application.routes.draw do
   delete 'cart.:id' => 'carts#destroy'
 
   namespace :admin do
-    resources :categories, :users, :products, :orders
+    resources :categories, :users, :products
+    resources :orders do
+      collection do
+        get 'download_pdf'
+      end
+    end
   end
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
   get 'admin' => 'admin/admin#index'
   root 'pages#index'

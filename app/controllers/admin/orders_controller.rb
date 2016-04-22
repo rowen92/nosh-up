@@ -23,6 +23,11 @@ class Admin::OrdersController < Admin::AdminController
     end
   end
 
+  def download_pdf
+    output = Admin::OrdersReport.new.to_pdf
+    send_data output, type: 'application/pdf', filename: "orders.pdf"
+  end
+
   private
 
     def set_order
