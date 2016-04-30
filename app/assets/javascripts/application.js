@@ -15,6 +15,10 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+//= require jquery.inputmask
+//= require jquery.inputmask.extensions
+//= require jquery.inputmask.numeric.extensions
+//= require jquery.inputmask.date.extensions
 
 var ready;
 ready = function () {
@@ -100,14 +104,8 @@ ready = function () {
       ul.animate({"height":height});
       return false;
     });
-    // $('.sidebar > ul > li > a').click(function(){
-    //   $('.sub a').removeClass('active');
-    //   $(this).addClass('active');
-    // }),
-    // $('.sub ul li a').click(function(){
-    //   $('.sub ul li a').removeClass('active');
-    //   $(this).addClass('active');
-    // });
+
+    $("#phone").inputmask("+38(099)999-99-99");
 
 };
 

@@ -25,6 +25,7 @@ gem 'aws-sdk'
 gem "mail"
 gem 'puma'
 gem 'prawn', :git => "git://github.com/sandal/prawn.git", :submodules => true
+gem 'jquery-inputmask-rails'
 
 gem 'jquery-rails'
 gem 'turbolinks'
