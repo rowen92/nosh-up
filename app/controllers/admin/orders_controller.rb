@@ -28,6 +28,17 @@ class Admin::OrdersController < Admin::AdminController
     send_data output, type: 'application/pdf', filename: "orders.pdf"
   end
 
+  def download_check_pdf
+    @order = Order.find(params[:order])
+    if @order.status == "Выполнен"
+      output = Admin::CheckReport.new.to_pdf(@order)
+      send_data output, type: 'application/pdf', filename: "check_#{@order.id}.pdf"
+    else
+      flash[:alert] = "Заказ не выполнен"
+      redirect_to :back
+    end
+  end
+
   private
 
     def set_order

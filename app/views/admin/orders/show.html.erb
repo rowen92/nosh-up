@@ -1,6 +1,10 @@
 <p>
   Номер заказа: #<%= @order.id %>
 </p>
+<%= link_to download_check_pdf_admin_orders_path(order: @order), class: "btn pull-right" do %>
+  <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
+  Чек
+<% end %>
 <p>
   Статус выполнения:
   <%= @order.status.humanize %>

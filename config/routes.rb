@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :orders do
       collection do
         get 'download_pdf'
+        get 'download_check_pdf'
       end
     end
   end
