@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   delete 'cart.:id' => 'carts#destroy'
 
   namespace :admin do
-    resources :categories, :users, :products
+    resources :categories, :users, :products, :foods, :recipes
     resources :orders do
       collection do
         get 'download_pdf'

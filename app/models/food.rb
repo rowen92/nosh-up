@@ -1,5 +1,6 @@
 class Food < ActiveRecord::Base
-  has_and_belongs_to_many :products
+  has_many :recipes
+  has_many :products, through: :recipes
 
   validates :vendor_code, uniqueness: true,
                           presence: true

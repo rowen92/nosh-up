@@ -4,7 +4,8 @@ class Product < ActiveRecord::Base
   belongs_to :category
   has_many :line_items, dependent: :destroy
   has_many :comments
-  has_and_belongs_to_many :foods
+  has_many :recipes
+  has_many :foods, through: :recipes
 
   validates :title, presence: true,
                     uniqueness: true

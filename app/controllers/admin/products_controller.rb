@@ -25,7 +25,7 @@ class Admin::ProductsController < Admin::AdminController
   def create
     @product = Product.new(product_params)
     if @product.save
-      flash[:success] = "Продукт создан!"
+      flash[:success] = "Блюдо добавлено!"
       redirect_to [:admin, @product]
     else
       render :new
@@ -34,7 +34,7 @@ class Admin::ProductsController < Admin::AdminController
 
   def update
     if @product.update(product_params)
-      flash[:success] = "Продукт обновлен"
+      flash[:success] = "Блюдо обновлено"
       redirect_to [:admin, @product]
     else
       render :edit
@@ -43,7 +43,7 @@ class Admin::ProductsController < Admin::AdminController
 
   def destroy
     @product.destroy
-    flash[:success] = "Продукт удален"
+    flash[:success] = "Блюдо удалено"
     redirect_to admin_products_url
   end
 

@@ -1,0 +1,38 @@
+<%= form_for([:admin, @food]) do |f| %>
+  <% if @food.errors.any? %>
+    <div id="error_explanation">
+      <% @food.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger alert-dismissible fade in" role=alert>
+          <button type=button class=close data-dismiss=alert aria-label=Close>
+            <span aria-hidden=true>&times;</span>
+          </button>
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :vendor_code, "Артикул" %>
+    <%= f.text_field :vendor_code, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :title, "Название" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :price, "Цена, грн/кг" %>
+    <%= f.text_field :price, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :weight, "Вес, кг" %>
+    <%= f.text_field :weight, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :expiry_date, "Окончание срока годности" %>
+    <%= f.date_field :expiry_date, class: "form-control" %>
+  </div>
+  <div class="col-xs-8 form-group">
+    <%= f.submit class: "btn btn-primary btn-block", value: "Отправить" %>
+  </div>
+<% end %>

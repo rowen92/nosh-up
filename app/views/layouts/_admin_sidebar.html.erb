@@ -21,7 +21,7 @@
     <% end %>
 
     <%= content_tag :li, class: "sub" do %>
-      <%= link_to "Продукты", "#" %>
+      <%= link_to "Блюда", "#" %>
       <ul class="nav nav-sidebar">
         <% @categories.each do |category| %>
           <%= content_tag :li, class: current_page?(admin_products_path(category: category)) ? "active" : "" do %>
@@ -29,6 +29,14 @@
           <% end %>
         <% end %>
       </ul>
+    <% end %>
+
+    <%= content_tag :li, class: current_page?(admin_recipes_path) ? "active" : "" do %>
+      <%= link_to "Рецепты блюд", admin_recipes_path %>
+    <% end %>
+
+    <%= content_tag :li, class: current_page?(admin_foods_path) ? "active" : "" do %>
+      <%= link_to "Продукты", admin_foods_path %>
     <% end %>
 
     <%= content_tag :li, class: "sub" do %>

@@ -1,0 +1,10 @@
+<div class="col-xs-12">
+  <h4><%= @food.title %></h4>
+  <h5 class="text-muted"><%= @food.vendor_code %></h5>
+  <h5 class="text-danger text-right"><%= number_to_currency(@food.price, unit: "") %> грн</h5>
+  <h5 class="text-danger text-right"><%= number_to_currency(@food.weight, unit: "") %> кг</h5>
+  <h5 class="text-muted text-right"><%= @food.expiry_date %></h5>
+</div>
+<div class="col-xs-12">
+  <%= link_to 'Редактировать', edit_admin_food_path(@food), class: "btn btn-default pull-right" %>
+</div>
