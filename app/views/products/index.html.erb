@@ -1,7 +1,7 @@
 <% if @category.present? %>
-  <h2 class="text-warning"><%= @category.title %></h2>
+  <h2 class="text-warning text-center"><%= @category.title %></h2>
 <% else %>
-  <h2 class="text-warning">Все продукты</h2>
+  <h2 class="text-warning text-center">Все продукты</h2>
 <% end %>
 
 <%= render @products %>
