@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   delete 'cart.:id' => 'carts#destroy'
 
   namespace :admin do
-    resources :categories, :users, :products, :foods, :recipes
+    resources :categories, :users, :products, :foods
+    resources :recipes do
+      patch 'edit_weight' => 'recipes#edit_weight'
+    end
     resources :orders do
       collection do
         get 'download_pdf'

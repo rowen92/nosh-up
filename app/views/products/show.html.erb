@@ -2,9 +2,21 @@
   <%= image_tag @product.image_url(:middle), class: "img-responsive" if @product.image? %>
 </div>
 <div class="col-xs-8">
-  <h4><%= @product.title %></h4>
-  <p class="text-muted"><%= @product.description %></p>
+  <h3><%= @product.title %></h3>
   <h4 class="text-danger text-right"><%= number_to_currency(@product.price, unit: "") %> грн</h4>
+  <h4>Ингредиенты</h4>
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+        <% @recipes.each do |recipe| %>
+          <tr>
+            <td><%= recipe.food.title %></td>
+            <td><%= (recipe.weight*1000).to_i %> г</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
   <p><%= button_to 'Купить', line_items_path(product_id: @product), class: 'btn btn-success btn-block' %></p>
 </div>
 <div class="clearfix"></div>

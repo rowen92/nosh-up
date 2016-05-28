@@ -2,6 +2,7 @@ class Admin::ProductsController < Admin::AdminController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :get_collect_categories, except: [:index, :show, :destroy]
   before_action :check_admin
+  before_action :get_foods, except: [:show, :index, :destroy]
 
   def index
     @category = Category.where(id: params[:category]).first if params[:category].present?
@@ -13,6 +14,7 @@ class Admin::ProductsController < Admin::AdminController
   end
 
   def show
+    @recipes = @product.recipes.order(:id)
   end
 
   def new
@@ -54,6 +56,10 @@ class Admin::ProductsController < Admin::AdminController
     end
 
     def product_params
-      params.require(:product).permit(:title, :description, :price, :image, :category_id)
+      params.require(:product).permit(:title, :description, :price, :image, :category_id, food_ids: [])
+    end
+
+    def get_foods
+      @foods = Food.all
     end
 end

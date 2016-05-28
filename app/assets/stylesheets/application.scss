@@ -114,3 +114,23 @@
     }
   }
 }
+
+.checkbox-list{
+  margin-bottom: 20px;
+}
+
+.checkbox-list input[type="checkbox"] {
+  display: inline-block;
+  width: 2%;
+}
+
+.checkbox-list input[type="checkbox"] + label {
+  display: inline-block;
+  margin-left: 1%;
+  width: 96%;
+  font-weight: normal;
+}
+
+.checkbox-list .label-check-boxes{
+  margin-bottom: 10px;
+}

@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @recipes = @product.recipes.order(:id)
   end
 
   def search_suggestions

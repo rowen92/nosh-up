@@ -1,0 +1,22 @@
+<%= form_for(recipe, url: admin_recipe_edit_weight_path(recipe)) do |f| %>
+  <% if recipe.errors.any? %>
+    <div id="error_explanation">
+      <% recipe.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger alert-dismissible fade in" role=alert>
+          <button type=button class=close data-dismiss=alert aria-label=Close>
+            <span aria-hidden=true>&times;</span>
+          </button>
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.text_field :weight, class: "form-control" %>
+    <%= f.hidden_field :recipe_id, value: recipe.id  %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary btn-block", value: "Зберегти" %>
+  </div>
+<% end %>

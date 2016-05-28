@@ -2,9 +2,50 @@
   <%= image_tag @product.image_url(:middle), class: "img-responsive" if @product.image? %>
 </div>
 <div class="col-xs-8">
-  <h4><%= @product.title %></h4>
-  <p class="text-muted"><%= @product.description %></p>
+  <h3><%= @product.title %></h3>
   <h4 class="text-danger text-right"><%= number_to_currency(@product.price, unit: "") %> грн</h4>
+
+<h4>Ингредиенты</h4>
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Название</th>
+        <th>Вес, кг</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipes.each_with_index do |recipe, index| %>
+        <tr>
+          <td><%= index+1 %></td>
+          <td><%= recipe.food.title %></td>
+          <td><%= number_to_currency(recipe.weight, unit: "") %></td>
+            <td>
+              <%= link_to "редактировать вес", '#', recipe_id: recipe, "data-target": "#modal_recipe_#{recipe.id}", "data-toggle": "modal"  %>
+            </td>
+        </tr>
+
+        <div id='<%= "modal_recipe_#{recipe.id}" %>'class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Редактировать вес ингредиента: <%= recipe.food.title %></h4>
+              </div>
+              <div class="modal-body">
+                <%= render "admin/recipes/edit", recipe: recipe %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <div class="col-xs-12">
   <%= link_to 'Редактировать', edit_admin_product_path(@product), class: "btn btn-default pull-right" %>
