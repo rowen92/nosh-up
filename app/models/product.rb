@@ -3,8 +3,8 @@ class Product < ActiveRecord::Base
 
   belongs_to :category
   has_many :line_items, dependent: :destroy
-  has_many :comments
-  has_many :recipes
+  has_many :comments, dependent: :destroy
+  has_many :recipes, dependent: :destroy
   has_many :foods, through: :recipes
 
   validates :title, presence: true,

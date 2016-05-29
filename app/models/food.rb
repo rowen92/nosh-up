@@ -11,4 +11,12 @@ class Food < ActiveRecord::Base
   validates :expiry_date, presence: true
 
   self.per_page = 50
+
+  def self.search_expiry_date
+    where("expiry_date < ?", Time.zone.now - 3.day)
+  end
+
+  def warning?
+    self.expiry_date < Time.zone.now - 3.day
+  end
 end

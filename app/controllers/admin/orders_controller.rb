@@ -16,6 +16,15 @@ class Admin::OrdersController < Admin::AdminController
     @user = @order.user
     if @order.update(order_params)
       # UserMailer.order_status_change(@order, @order.user).deliver_later
+      if @order.status == "Выполнен"
+        @order.line_items.each do |li|
+          li.product.recipes.each do |recipe|
+            food = Food.find(recipe.food)
+            food.weight -= (recipe.weight * li.quantity)
+            food.save
+          end
+        end
+      end
       redirect_to [:admin, @order]
     else
       flash[:alert] = "Попробуйте еще раз..."

@@ -3,7 +3,7 @@ class Admin::FoodsController < Admin::AdminController
   before_action :check_admin
 
   def index
-    @foods = Food.all
+    @foods = Food.all.order(:title)
   end
 
   def show
@@ -29,7 +29,7 @@ class Admin::FoodsController < Admin::AdminController
   def update
     if @food.update(food_params)
       flash[:success] = "Продукт обновлен"
-      redirect_to @food
+      redirect_to [:admin, @food]
     else
       render :edit
     end
