@@ -41,6 +41,14 @@ class Admin::FoodsController < Admin::AdminController
     redirect_to admin_foods_url
   end
 
+  def cancel
+    @food = Food.find(params[:food_id])
+    @food.weight = 0
+    @food.save
+    flash[:alert] = "Продукт списан"
+    redirect_to :back
+  end
+
   private
 
     def set_food

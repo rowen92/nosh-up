@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Admin Spoiled Foods</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_spoiled_foods.each do |admin_spoiled_food| %>
+      <tr>
+        <td><%= link_to 'Show', admin_spoiled_food %></td>
+        <td><%= link_to 'Edit', edit_admin_spoiled_food_path(admin_spoiled_food) %></td>
+        <td><%= link_to 'Destroy', admin_spoiled_food, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spoiled food', new_admin_spoiled_food_path %>

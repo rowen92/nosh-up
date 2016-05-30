@@ -13,7 +13,7 @@ class Food < ActiveRecord::Base
   self.per_page = 50
 
   def self.search_expiry_date
-    where("expiry_date < ?", Time.zone.now - 3.day)
+    where("expiry_date < ?", Time.zone.now - 3.day).where("weight > ?", 0)
   end
 
   def warning?

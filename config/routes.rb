@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :spoiled_foods
+  end
   post 'line_items/increase_quantity' => 'line_items#increase_quantity'
   post 'line_items/decrease_quantity' => 'line_items#decrease_quantity'
   resources :line_items, only: [:create, :destroy]
@@ -14,9 +17,12 @@ Rails.application.routes.draw do
   delete 'cart.:id' => 'carts#destroy'
 
   namespace :admin do
-    resources :categories, :users, :products, :foods
+    resources :categories, :users, :products
     resources :recipes do
       patch 'edit_weight' => 'recipes#edit_weight'
+    end
+    resources :foods do
+      get 'cancel' => 'foods#cancel'
     end
     resources :orders do
       collection do
