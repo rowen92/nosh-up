@@ -4,7 +4,6 @@
   <table class="table table-striped table-hover vertical-align">
     <thead>
       <tr>
-        <th>Артикул</th>
         <th>Название</th>
         <th>Цена</th>
         <th>Вес</th>
@@ -14,26 +13,28 @@
     <tbody>
       <% @foods.each do |food| %>
         <%= content_tag :tr, class: food.warning? ? "warning" : "" do %>
-          <td><%= food.vendor_code %></td>
-          <td><%= link_to food.title, [:admin, food] %></td>
+          <td><%= food.title %></td>
           <td><%= number_to_currency(food.price, unit: "") %> грн</td>
           <td><%= number_to_currency(food.weight, unit: "") %> кг</td>
           <td><%= food.expiry_date.strftime("%m-%e-%Y") %></td>
-          <td>
-            <%= link_to edit_admin_food_path(food) do %>
-              <span class="glyphicon glyphicon-pencil text-muted" aria-hidden="true"></span>
-            <% end %>
-          </td>
+          <% unless food.weight > 0 %>
+            <td>
+              <%= link_to edit_admin_food_path(food) do %>
+                <span class="glyphicon glyphicon-pencil text-muted" aria-hidden="true"></span>
+              <% end %>
+            </td>
+          <% else %>
+            <td>
+              <%= link_to admin_food_cancel_path(food_id: food), data: { confirm: 'Списать продукт?' } do %>
+                <span class="glyphicon glyphicon-fire text-warning" aria-hidden="true"></span>
+              <% end %>
+            </td>
+          <% end %>
           <!-- <td>
             <%= link_to [:admin, food], method: :delete, data: { confirm: 'Вы уверены?' } do %>
               <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
             <% end %>
           </td> -->
-          <td>
-            <%= link_to admin_food_cancel_path(food_id: food), data: { confirm: 'Списать продукт?' } do %>
-              <span class="glyphicon glyphicon-fire text-warning" aria-hidden="true"></span>
-            <% end %>
-          </td>
         <% end %>
       <% end %>
     </tbody>

@@ -1,12 +1,9 @@
 class Admin::FoodsController < Admin::AdminController
-  before_action :set_food, only: [:show, :edit, :update, :destroy]
+  before_action :set_food, only: [:edit, :update, :destroy]
   before_action :check_admin
 
   def index
-    @foods = Food.all.order(:title)
-  end
-
-  def show
+    @foods = Food.all.order(updated_at: :desc)
   end
 
   def new
@@ -20,7 +17,7 @@ class Admin::FoodsController < Admin::AdminController
     @food = Food.new(food_params)
     if @food.save
       flash[:success] = "Продукт добавлен"
-      redirect_to [:admin, @food]
+      redirect_to admin_foods_url
     else
       render :new
     end
@@ -29,7 +26,7 @@ class Admin::FoodsController < Admin::AdminController
   def update
     if @food.update(food_params)
       flash[:success] = "Продукт обновлен"
-      redirect_to [:admin, @food]
+      redirect_to admin_foods_url
     else
       render :edit
     end
@@ -43,6 +40,7 @@ class Admin::FoodsController < Admin::AdminController
 
   def cancel
     @food = Food.find(params[:food_id])
+    SpoiledFood.create(food_id: @food.id, weight: @food.weight)
     @food.weight = 0
     @food.save
     flash[:alert] = "Продукт списан"
@@ -56,6 +54,6 @@ class Admin::FoodsController < Admin::AdminController
     end
 
     def food_params
-      params.require(:food).permit(:vendor_code, :title, :price, :weight, :expiry_date)
+      params.require(:food).permit(:title, :price, :weight, :expiry_date)
     end
 end

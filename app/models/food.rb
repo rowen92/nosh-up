@@ -1,9 +1,8 @@
 class Food < ActiveRecord::Base
   has_many :recipes
   has_many :products, through: :recipes
+  has_many :spoiled_foods
 
-  validates :vendor_code, uniqueness: true,
-                          presence: true
   validates :title, uniqueness: true,
                     presence: true
   validates :price, presence: true

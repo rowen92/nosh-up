@@ -1,25 +1,22 @@
-<p id="notice"><%= notice %></p>
+<h2>Списанные продукты</h2>
 
-<h1>Listing Admin Spoiled Foods</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @admin_spoiled_foods.each do |admin_spoiled_food| %>
+<div class="table-responsive">
+  <table class="table table-striped table-hover vertical-align">
+    <thead>
       <tr>
-        <td><%= link_to 'Show', admin_spoiled_food %></td>
-        <td><%= link_to 'Edit', edit_admin_spoiled_food_path(admin_spoiled_food) %></td>
-        <td><%= link_to 'Destroy', admin_spoiled_food, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Продукт</th>
+        <th>Вес</th>
+        <th>Дата списания</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Spoiled food', new_admin_spoiled_food_path %>
+    </thead>
+    <tbody>
+      <% @spoiled_foods.each do |spoiled_food| %>
+        <tr>
+          <td><%= spoiled_food.food.title %></td>
+          <td><%= number_to_currency(spoiled_food.weight, unit: "") %> кг</td>
+          <td><%= spoiled_food.created_at.strftime("%m-%e-%y %H:%M") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
