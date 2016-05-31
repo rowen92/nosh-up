@@ -1,0 +1,21 @@
+<h4>Штатные данные</h4>
+<div class="form-group">
+  <%= f.label :position, "Должность", class: "control-label col-xs-3" %>
+  <div class="col-xs-9">
+    <%= f.text_field :position, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :passport, "Серия и номер паспорта", class: "control-label col-xs-3" %>
+  <div class="col-xs-9">
+    <%= f.text_field :passport, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :date_of_birth, "Дата рождения", class: "control-label col-xs-3" %>
+  <div class="col-xs-9">
+    <%= f.text_field :date_of_birth, "data-provide" => 'datepicker',
+                                      "data-date-format" => "dd/mm/yyyy",
+                                      class: "form-control" %>
+  </div>
+</div>

@@ -6,8 +6,11 @@ class Admin::UsersController < Admin::AdminController
     if params[:role].present?
       @users = User.where(role: params[:role]).order(:name).page(params[:page])
       @user_role = @users.first.role.humanize if @users.present?
+    elsif params[:staff].present?
+      @users = User.where(staff: true).page(params[:page]).order(:name)
+      @user_role = "Штатные сотрудники"
     else
-      @users = User.all.order(:name)
+      @users = User.page(params[:page]).order(:name)
     end
   end
 
@@ -43,7 +46,7 @@ class Admin::UsersController < Admin::AdminController
     end
 
     def user_params
-      params.require(:user).permit(:role)
+      params.require(:user).permit(:role, :staff)
     end
 
 end

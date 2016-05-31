@@ -45,6 +45,33 @@
         <%= @user.address %>
       </td>
     </tr>
+    <% if @user.staff? %>
+      <h4>Штатные данные</h4>
+      <tr>
+        <td>
+          <strong>Должность:</strong>
+        </td>
+        <td>
+          <%= @user.position %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>Серия и номер паспорта:</strong>
+        </td>
+        <td>
+          <%= @user.passport %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>Дата рождения:</strong>
+        </td>
+        <td>
+          <%= @user.date_of_birth %>
+        </td>
+      </tr>
+    <% end %>
   </table>
   <% if current_user == @user %>
     <%= link_to "Редактировать", edit_user_path(current_user), class: "btn btn-default pull-right" %>

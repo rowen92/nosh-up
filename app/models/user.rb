@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
                        if: :password
   validates :address, presence: true
 
-  enum role: [:admin, :user, :manager, :staff]
+  enum role: [:admin, :user, :manager]
 
   self.per_page = 50
 

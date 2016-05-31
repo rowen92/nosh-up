@@ -16,6 +16,10 @@
       </ul>
     <% end %>
 
+    <%= content_tag :li, class: current_page?(admin_users_path(staff: true)) ? "active" : "" do %>
+      <%= link_to "Штатные сотрудники", admin_users_path(staff: true) %>
+    <% end %>
+
     <%= content_tag :li, class: current_page?(admin_categories_path) ? "active" : "" do %>
       <%= link_to "Категории", admin_categories_path %>
     <% end %>

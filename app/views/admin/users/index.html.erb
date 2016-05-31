@@ -1,7 +1,7 @@
 <% if @user_role.present? %>
-  <h2>Роль: <%= @user_role %></h2>
+  <h2><%= @user_role %></h2>
 <% else %>
-  <h2>Все пользователи</h2>
+  <h2><%= @user_role %></h2>
 <% end %>
 <div class="table-responsive">
   <table class="table table-striped table-hover vertical-align">
@@ -10,6 +10,7 @@
         <th>Имя</th>
         <th>Email</th>
         <th>Роль</th>
+        <th>Сотрудник?</th>
         <th>Дата регистрации</th>
       </tr>
     </thead>
@@ -28,7 +29,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Смена роли пользователя: <%= user.name %></h4>
+                    <h4 class="modal-title">Изменение данных для: <%= user.name %></h4>
                   </div>
                   <div class="modal-body">
                     <%= render "form", user: user %>
@@ -38,7 +39,15 @@
             </div>
 
           </td>
-          <td><%= user.created_at.strftime("%m-%e-%y %H:%M") %></td>
+          <td>
+            <% if user.staff? %>
+              да
+            <% else %>
+              нет
+            <% end %>
+            <%= link_to "изменить",  '#', "data-target": "#modal_role_#{user.id}", "data-toggle": "modal"  %>
+          </td>
+          <td><%= user.created_at.strftime("%d-%m-%Y %H:%M") %></td>
           <td>
             <%= link_to [:admin, user], method: :delete, data: { confirm: 'Вы уверены?' } do %>
               <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>

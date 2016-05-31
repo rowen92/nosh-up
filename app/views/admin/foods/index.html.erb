@@ -12,11 +12,11 @@
     </thead>
     <tbody>
       <% @foods.each do |food| %>
-        <%= content_tag :tr, class: food.warning? ? "warning" : "" do %>
+        <%= content_tag :tr, class: food.warning? ? "danger" : "" do %>
           <td><%= food.title %></td>
           <td><%= number_to_currency(food.price, unit: "") %> грн</td>
           <td><%= number_to_currency(food.weight, unit: "") %> кг</td>
-          <td><%= food.expiry_date.strftime("%m-%e-%Y") %></td>
+          <td><%= food.expiry_date.strftime("%d-%m-%Y") %></td>
           <% unless food.weight > 0 %>
             <td>
               <%= link_to edit_admin_food_path(food) do %>

@@ -26,6 +26,7 @@ gem "mail"
 gem 'puma'
 gem 'prawn', :git => "git://github.com/sandal/prawn.git", :submodules => true
 gem 'jquery-inputmask-rails'
+gem 'bootstrap-datepicker-rails'
 
 gem 'jquery-rails'
 gem 'turbolinks'

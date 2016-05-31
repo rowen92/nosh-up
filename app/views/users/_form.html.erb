@@ -55,6 +55,9 @@
       <%= f.text_area :address, class: "form-control", rows: 4 %>
     </div>
   </div>
+  <% if current_user.present? && current_user.staff == true %>
+    <%= render "users/fields_for_staff", f: f %>
+  <% end %>
   <%= content_tag :div, class: "col-xs-offset-3 #@user_class_submit" do %>
     <%= f.submit class: "btn btn-success btn-block", value: @submit_value %>
   <% end %>
