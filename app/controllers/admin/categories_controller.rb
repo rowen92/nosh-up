@@ -39,6 +39,9 @@ class Admin::CategoriesController < Admin::AdminController
     @category.destroy
     flash[:success] = "Категория удалена"
     redirect_to admin_categories_path
+  rescue ActiveRecord::RecordNotDestroyed
+    flash[:alert] = "Невозможно удалить. Блюда, относящиеся к данной категории, уже имеют заказы от покупателей"
+    redirect_to admin_categories_path
   end
 
   private

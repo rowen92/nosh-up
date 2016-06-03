@@ -16,6 +16,7 @@
         <% end %>
       </tbody>
     </table>
+    <p class="text-right">Общий вес: <%= @recipes.to_a.sum {|i| i.weight*1000 } %> г</p>
   </div>
   <p><%= button_to 'Купить', line_items_path(product_id: @product), class: 'btn btn-success btn-block' %></p>
 </div>

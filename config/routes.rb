@@ -23,8 +23,13 @@ Rails.application.routes.draw do
     end
     resources :orders do
       collection do
-        get 'download_pdf'
         get 'download_check_pdf'
+      end
+    end
+    resources :reports do
+      collection do
+        get 'download_success_orders_pdf'
+        get 'download_cancel_porducts_pdf'
       end
     end
   end

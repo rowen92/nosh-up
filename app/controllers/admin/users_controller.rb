@@ -22,6 +22,9 @@ class Admin::UsersController < Admin::AdminController
       flash[:alert] = "Ты не можешь удалить сам себя"
     end
     redirect_to :back
+  rescue ActiveRecord::InvalidForeignKey
+    flash[:alert] = "Аккаунт не может быть удален"
+    redirect_to :back
   end
 
   def edit

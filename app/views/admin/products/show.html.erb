@@ -21,7 +21,7 @@
         <tr>
           <td><%= index+1 %></td>
           <td><%= recipe.food.title %></td>
-          <td><%= number_to_currency(recipe.weight, unit: "") %></td>
+          <td><%= number_to_currency(recipe.weight, unit: "", precision: 3) %></td>
             <td>
               <%= link_to "редактировать вес", '#', recipe_id: recipe, "data-target": "#modal_recipe_#{recipe.id}", "data-toggle": "modal"  %>
             </td>

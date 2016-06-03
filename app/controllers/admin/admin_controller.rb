@@ -19,7 +19,7 @@ class Admin::AdminController < ApplicationController
     def shout
       foods = Food.search_expiry_date
       foods.each do |food|
-        flash[:alert] = "Заканчивается срок годности продукта #{food.title} #{food.expiry_date}"
+        flash[:notice] = "Заканчивается срок годности продукта #{food.title} #{food.expiry_date}"
       end
     end
 
