@@ -12,4 +12,9 @@ class Admin::ReportsController < Admin::AdminController
     send_data output, type: 'application/pdf', filename: "spoiled_foods(#{@date.month}.#{@date.year}).pdf"
   end
 
+  def download_foods_pdf
+    output = Admin::FoodsReport.new.to_pdf
+    send_data output, type: 'application/pdf', filename: "foods.pdf"
+  end
+
 end

@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       collection do
         get 'download_success_orders_pdf'
         get 'download_cancel_porducts_pdf'
+        get 'download_foods_pdf'
       end
     end
   end

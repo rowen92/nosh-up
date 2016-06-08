@@ -1,4 +1,5 @@
 <h2>Отчеты</h2>
+<hr>
 <h3>Успешные заказы</h3>
 <%= form_tag(download_success_orders_pdf_admin_reports_path, method: "GET", class: "navbar-form navbar-left") do %>
   <div class="form-group">
@@ -33,3 +34,8 @@
     <% end %>
   </div>
 <% end %>
+<div class="clearfix"></div>
+<hr>
+<h3>Остаток продуктов на складе</h3>
+<%= link_to "Загрузить", download_foods_pdf_admin_reports_path, class: "btn btn-default" %>
+<hr>

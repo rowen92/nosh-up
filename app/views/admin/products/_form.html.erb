@@ -26,11 +26,11 @@
   </div>
   <div class="form-group">
     <%= f.label :category_id, "Категория" %>
-    <%= f.collection_select(:category_id, @categoies, :id, :title, {}, class: "form-control") %>
+    <%= f.collection_select(:category_id, @categoies.order(title: :asc), :id, :title, {}, class: "form-control") %>
   </div>
   <div class="checkbox-list">
     <%= f.label :food_id, "Ингредиенты", class: "label-check-boxes" %><br>
-    <%= f.collection_check_boxes(:food_ids, @foods || [], :id, :title) %>
+    <%= f.collection_check_boxes(:food_ids, @foods.order(title: :asc) || [], :id, :title) %>
   </div>
   <div class="col-xs-8 form-group">
     <%= f.submit class: "btn btn-primary btn-block", value: "Отправить" %>
