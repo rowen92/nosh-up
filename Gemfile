@@ -40,6 +40,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rails_12factor'
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
